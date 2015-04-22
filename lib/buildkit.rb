@@ -1,5 +1,5 @@
 require 'buildkit/version'
+require 'buildkit/client'
 
 module Buildkit
-  # Your code goes here...
 end
