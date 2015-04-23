@@ -1,17 +1,13 @@
 module Buildkit
   # Custom error class for rescuing from all Buildkite errors
   class Error < StandardError
-
     # Returns the appropriate Buildkit::Error subclass based
     # on status and response message
     #
     # @param [Hash] response HTTP response
     # @return [Buildkit::Error]
     def self.from_response(response)
-      status  = response[:status].to_i
-      body    = response[:body].to_s
-      headers = response[:response_headers]
-
+      status = response[:status].to_i
       if klass =  case status
                   when 400      then Buildkit::BadRequest
                   when 401      then Buildkit::Unauthorized
@@ -33,7 +29,7 @@ module Buildkit
       end
     end
 
-    def initialize(response=nil)
+    def initialize(response = nil)
       @response = response
       super(build_error_message)
     end
@@ -58,19 +54,21 @@ module Buildkit
     private
 
     def data
-      @data ||=
-        if (body = @response[:body]) && !body.empty?
-          if body.is_a?(String) &&
-            @response[:response_headers] &&
-            @response[:response_headers][:content_type] =~ /json/
+      @data ||= parse_data
+    end
 
-            Sawyer::Agent.serializer.decode(body)
-          else
-            body
-          end
-        else
-          nil
-        end
+    def parse_data
+      body = @response[:body]
+      return if body.empty?
+      return body unless body.is_a?(String)
+
+      headers = @response[:response_headers]
+      content_type = headers && headers[:content_type] || ''
+      if content_type =~ /json/
+        Sawyer::Agent.serializer.decode(body)
+      else
+        body
+      end
     end
 
     def response_message
@@ -91,7 +89,7 @@ module Buildkit
 
       summary = "\nError summary:\n"
       summary << data[:errors].map do |hash|
-        hash.map { |k,v| "  #{k}: #{v}" }
+        hash.map { |k, v| "  #{k}: #{v}" }
       end.join("\n")
 
       summary
@@ -101,7 +99,7 @@ module Buildkit
       return nil if @response.nil?
 
       message =  "#{@response[:method].to_s.upcase} "
-      message << redact_url(@response[:url].to_s) + ": "
+      message << redact_url(@response[:url].to_s) + ': '
       message << "#{@response[:status]} - "
       message << "#{response_message}" unless response_message.nil?
       message << "#{response_error}" unless response_error.nil?
@@ -111,7 +109,7 @@ module Buildkit
     end
 
     def redact_url(url_string)
-      %w[client_secret access_token].each do |token|
+      %w(client_secret access_token).each do |token|
         url_string.gsub!(/#{token}=\S+/, "#{token}=(redacted)") if url_string.include? token
       end
       url_string
