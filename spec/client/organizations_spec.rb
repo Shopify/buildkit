@@ -8,8 +8,8 @@ describe Buildkit::Client::Organizations do
         expect(organizations.size).to be == 1
 
         organization = organizations.first
-        expect(organization.name) == 'Shopify'
-        expect(organization.slug) == 'shopify'
+        expect(organization.name).to be == 'Shopify'
+        expect(organization.slug).to be == 'shopify'
       end
     end
   end
@@ -18,8 +18,8 @@ describe Buildkit::Client::Organizations do
     it 'returns an organization' do
       VCR.use_cassette 'organization' do
         organization = client.organization('shopify')
-        expect(organization.name) == 'Shopify'
-        expect(organization.slug) == 'shopify'
+        expect(organization.name).to be == 'Shopify'
+        expect(organization.slug).to be == 'shopify'
       end
     end
   end

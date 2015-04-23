@@ -1,8 +1,10 @@
 require 'sawyer'
+require 'buildkit/client/agents'
 require 'buildkit/client/organizations'
 
 module Buildkit
   class Client
+    include Agents
     include Organizations
 
     # Header keys that can be passed in options hash to {#get},{#head}
@@ -84,11 +86,11 @@ module Buildkit
         end
       end
 
-      @last_response = response = agent.call(method, URI::Parser.new.escape(path.to_s), data, options)
+      @last_response = response = sawyer_agent.call(method, URI::Parser.new.escape(path.to_s), data, options)
       response.data
     end
 
-    def agent
+    def sawyer_agent
       @agent ||= Sawyer::Agent.new(api_endpoint, sawyer_options) do |http|
         http.headers[:accept] = 'application/json'
         http.headers[:content_type] = 'application/json'

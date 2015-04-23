@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rake'
+gem 'byebug'
 
 group :test do
   gem 'rspec', '~> 3.2'

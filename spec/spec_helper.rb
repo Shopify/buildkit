@@ -1,5 +1,17 @@
 require 'vcr'
 
+module AgentsAccessTokenFilter
+  private
+
+  def serializable_body(*)
+    body = super
+    body['string'].gsub!(/"access_token":\s*"\w+"/, '"access_token": "<<AGENT_ACCESS_TOKEN>>"')
+    body['string'].gsub!(/"ip_address":\s*"[\d\.]+"/, '"ip_address": "127.0.0.1"')
+    body
+  end
+end
+
+VCR::Response.include(AgentsAccessTokenFilter)
 VCR.configure do |config|
   config.configure_rspec_metadata!
   config.cassette_library_dir = 'spec/cassettes/'

@@ -1,0 +1,82 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.buildkite.com/v1/organizations/shopify/agents/60c64470-3930-4297-8a45-786e9bec3ea6
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Buildkit v0.1.0
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <<ACCESS_TOKEN>>
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      server:
+      - nginx/1.6.2
+      date:
+      - Thu, 23 Apr 2015 16:26:10 GMT
+      content-type:
+      - application/json; charset=utf-8
+      transfer-encoding:
+      - chunked
+      connection:
+      - close
+      status:
+      - 200 OK
+      x-frame-options:
+      - SAMEORIGIN, SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff, nosniff
+      access-control-allow-origin:
+      - "*"
+      x-accepted-oauth-scopes:
+      - read_agents
+      x-oauth-scopes:
+      - read_user,read_organizations,read_projects,write_projects,read_builds,write_builds,read_build_logs,read_agents,write_agents
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 585901f7-400d-4e7f-99ab-c24d9a95dfac
+      x-runtime:
+      - '0.026598'
+      strict-transport-security:
+      - max-age=31536000; includeSubdomains
+      x-ua-compatible:
+      - chrome=1
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "60c64470-3930-4297-8a45-786e9bec3ea6",
+          "url": "https://api.buildkite.com/v1/organizations/shopify/agents/60c64470-3930-4297-8a45-786e9bec3ea6",
+          "web_url": "https://buildkite.com/organizations/shopify/agents/60c64470-3930-4297-8a45-786e9bec3ea6",
+          "name": "a2.bk3.ec2.shopify.com",
+          "connection_state": "connected",
+          "ip_address": "127.0.0.1",
+          "access_token": "<<AGENT_ACCESS_TOKEN>>",
+          "hostname": "bk3.ec2.shopify.com",
+          "user_agent": "buildkite-agent/1.0-beta.22.438 (linux; amd64)",
+          "creator": null,
+          "created_at": "2015-04-22 21:28:09 UTC",
+          "build": null,
+          "job": null,
+          "last_job_finished_at": "2015-04-23 16:18:21 UTC",
+          "priority": 1,
+          "meta_data": [
+            "docker=1"
+          ]
+        }
+    http_version: 
+  recorded_at: Thu, 23 Apr 2015 16:26:09 GMT
+recorded_with: VCR 2.9.3
