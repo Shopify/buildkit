@@ -1,0 +1,139 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.buildkite.com/v1/organizations/shopify/projects/shopify-borgified
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Buildkit v0.1.0
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <<ACCESS_TOKEN>>
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      server:
+      - nginx/1.6.2
+      date:
+      - Thu, 23 Apr 2015 17:15:29 GMT
+      content-type:
+      - application/json; charset=utf-8
+      transfer-encoding:
+      - chunked
+      connection:
+      - close
+      status:
+      - 200 OK
+      x-frame-options:
+      - SAMEORIGIN, SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff, nosniff
+      access-control-allow-origin:
+      - "*"
+      x-accepted-oauth-scopes:
+      - read_projects
+      x-oauth-scopes:
+      - read_user,read_organizations,read_projects,write_projects,read_builds,write_builds,read_build_logs,read_agents,write_agents
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 02d83a2f-8395-4f82-8670-742f6784e17b
+      x-runtime:
+      - '0.022903'
+      strict-transport-security:
+      - max-age=31536000; includeSubdomains
+      x-ua-compatible:
+      - chrome=1
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "5c6894bc-948c-4423-b536-987fd0332912",
+          "url": "https://api.buildkite.com/v1/organizations/shopify/projects/shopify-borgified",
+          "web_url": "https://buildkite.com/shopify/shopify-borgified",
+          "name": "shopify-borgified",
+          "slug": "shopify-borgified",
+          "repository": "git@github.com:Shopify/shopify.git",
+          "provider": {
+            "id": "github",
+            "webhook_url": "https://webhook.buildkite.com/deliver/597fb5587a1da3b36b7abb0050e3ad6650b514138991d7053f"
+          },
+          "builds_url": "https://api.buildkite.com/v1/organizations/shopify/projects/shopify-borgified/builds",
+          "created_at": "2015-04-21 14:44:26 UTC",
+          "steps": [
+            {
+              "type": "script",
+              "name": "wait-for-container",
+              "command": "buildkite/wait-for-container.sh",
+              "artifact_paths": "",
+              "branch_configuration": "",
+              "env": {
+              },
+              "timeout_in_minutes": 10,
+              "agent_query_rules": [
+                "docker=1"
+              ]
+            },
+            {
+              "type": "waiter"
+            },
+            {
+              "type": "script",
+              "name": "tests-%n",
+              "command": "buildkite/run-tests.rb",
+              "artifact_paths": ".artifacts/**/*;/app/logs/**/*",
+              "branch_configuration": "",
+              "env": {
+              },
+              "timeout_in_minutes": null,
+              "agent_query_rules": [
+                "docker=1"
+              ]
+            }
+          ],
+          "env": {
+            "RUBY_GC_MALLOC_LIMIT": "128000000",
+            "RUBY_GC_OLDMALLOC_LIMIT": "128000000",
+            "RUBY_GC_HEAP_GROWTH_FACTOR": "1.25",
+            "RUBY_GC_HEAP_GROWTH_MAX_SLOTS": "300000",
+            "RUBY_GC_HEAP_INIT_SLOTS": "600000",
+            "RUBY_GC_HEAP_FREE_SLOTS": "600000"
+          },
+          "featured_build": {
+            "id": "500713d1-8aa3-46d4-a58a-d6a795056c6d",
+            "url": "https://api.buildkite.com/v1/organizations/shopify/projects/shopify-borgified/builds/68",
+            "web_url": "https://buildkite.com/shopify/shopify-borgified/builds/68",
+            "number": 68,
+            "state": "failed",
+            "message": "sudo mount -o remount,rw,noatime,nobarrier /dev/md0 /u",
+            "commit": "HEAD",
+            "branch": "bk-tar-no-compress",
+            "env": {
+            },
+            "created_at": "2015-04-23 16:55:52 UTC",
+            "scheduled_at": "2015-04-23 16:55:52 UTC",
+            "started_at": "2015-04-23 16:55:58 UTC",
+            "finished_at": "2015-04-23 17:03:21 UTC",
+            "meta_data": {
+              "buildkite:git:branch": "* master",
+              "buildkite:git:commit": "commit 98e2f4eeabbfd6c9f29ba23b2a9c74311fd8682a\nAuthor:     Anonymous <anonymous@example.com>\nAuthorDate: Thu Apr 23 11:24:38 2015 -0400\nCommit:     Anonymous <anonymous@example.com>\nCommitDate: Thu Apr 23 11:24:38 2015 -0400\n\n    More semian tickets"
+            }
+          },
+          "scheduled_builds_count": 0,
+          "running_builds_count": 0,
+          "scheduled_jobs_count": 0,
+          "running_jobs_count": 0
+        }
+    http_version: 
+  recorded_at: Thu, 23 Apr 2015 17:15:28 GMT
+recorded_with: VCR 2.9.3

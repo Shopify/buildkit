@@ -7,6 +7,9 @@ module AgentsAccessTokenFilter
     body = super
     body['string'].gsub!(/"access_token":\s*"\w+"/, '"access_token": "<<AGENT_ACCESS_TOKEN>>"')
     body['string'].gsub!(/"ip_address":\s*"[\d\.]+"/, '"ip_address": "127.0.0.1"')
+    body['string'].gsub!(/(Commit|Author):\s*([\w\s]+?)\s*<([\w@\.\-]+)>/) do |match|
+      "#{$1}:     Anonymous <anonymous@example.com>"
+    end
     body
   end
 end
