@@ -3,6 +3,7 @@ require 'buildkit/client/agents'
 require 'buildkit/client/builds'
 require 'buildkit/client/organizations'
 require 'buildkit/client/projects'
+require 'buildkit/response/raise_error'
 
 module Buildkit
   class Client
@@ -13,6 +14,15 @@ module Buildkit
 
     # Header keys that can be passed in options hash to {#get},{#head}
     CONVENIENCE_HEADERS = Set.new([:accept, :content_type])
+
+    # In Faraday 0.9, Faraday::Builder was renamed to Faraday::RackBuilder
+    RACK_BUILDER_CLASS = defined?(Faraday::RackBuilder) ? Faraday::RackBuilder : Faraday::Builder
+
+    # Default Faraday middleware stack
+    MIDDLEWARE = RACK_BUILDER_CLASS.new do |builder|
+      builder.use Buildkit::Response::RaiseError
+      builder.adapter Faraday.default_adapter
+    end
 
     def initialize(token:)
       @token = token
@@ -72,6 +82,8 @@ module Buildkit
       request :head, url, parse_query_and_convenience_headers(options)
     end
 
+    attr_reader :last_response
+
     # Fetch the root resource for the API
     #
     # @return [Sawyer::Resource]
@@ -105,7 +117,8 @@ module Buildkit
 
     def sawyer_options
       {
-        links_parser: Sawyer::LinkParsers::Simple.new
+        links_parser: Sawyer::LinkParsers::Simple.new,
+        faraday: Faraday.new(builder: MIDDLEWARE),
       }
     end
 

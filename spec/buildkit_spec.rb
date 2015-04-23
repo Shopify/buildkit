@@ -13,4 +13,14 @@ describe Buildkit do
       end
     end
   end
+
+  describe 'errors' do
+    it 'raises a Buildkit::NotFound on 404 responses' do
+      VCR.use_cassette '404' do
+        expect {
+          client.get('/404-not-found')
+        }.to raise_error(Buildkit::NotFound)
+      end
+    end
+  end
 end
