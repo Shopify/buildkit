@@ -7,7 +7,7 @@ module Buildkit
       # List agents
       #
       # @return [Array<Sawyer::Resource>] Array of hashes representing Buildkite agents.
-      # @see https://buildkite.com/docs/api/organizations#list-agents
+      # @see https://buildkite.com/docs/api/agents#list-agents
       # @example
       #   Buildkit.agents('my-great-org')
       def agents(org, options = {})
