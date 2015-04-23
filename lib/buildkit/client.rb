@@ -1,7 +1,10 @@
 require 'sawyer'
+require 'buildkit/client/organizations'
 
 module Buildkit
   class Client
+    include Organizations
+
     # Header keys that can be passed in options hash to {#get},{#head}
     CONVENIENCE_HEADERS = Set.new([:accept, :content_type])
 

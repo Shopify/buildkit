@@ -1,0 +1,73 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.buildkite.com/v1/organizations/shopify
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Buildkit v0.1.0
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <<ACCESS_TOKEN>>
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      server:
+      - nginx/1.6.3
+      date:
+      - Thu, 23 Apr 2015 15:39:01 GMT
+      content-type:
+      - application/json; charset=utf-8
+      transfer-encoding:
+      - chunked
+      connection:
+      - close
+      status:
+      - 200 OK
+      x-frame-options:
+      - SAMEORIGIN, SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff, nosniff
+      access-control-allow-origin:
+      - "*"
+      x-accepted-oauth-scopes:
+      - read_organizations
+      x-oauth-scopes:
+      - read_user,read_organizations,read_projects,write_projects,read_builds,write_builds,read_build_logs,read_agents,write_agents
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - c7bc2682-0b9a-4740-88da-297ca3e7f631
+      x-runtime:
+      - '0.022807'
+      strict-transport-security:
+      - max-age=31536000; includeSubdomains
+      x-ua-compatible:
+      - chrome=1
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "b565fb3e-c660-4bb2-9df7-e9d484d69d38",
+          "url": "https://api.buildkite.com/v1/organizations/shopify",
+          "web_url": "https://buildkite.com/shopify",
+          "name": "Shopify",
+          "slug": "shopify",
+          "projects_url": "https://api.buildkite.com/v1/organizations/shopify/projects",
+          "agents_url": "https://api.buildkite.com/v1/organizations/shopify/agents",
+          "emojis_url": "https://api.buildkite.com/v1/organizations/shopify/emojis",
+          "created_at": "2015-03-11 13:21:13 UTC"
+        }
+    http_version: 
+  recorded_at: Thu, 23 Apr 2015 15:39:01 GMT
+recorded_with: VCR 2.9.3

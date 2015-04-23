@@ -1,13 +1,11 @@
 require 'spec_helper'
 
 describe Buildkit do
-  let(:client) { Buildkit::Client.new(token: test_buildkite_token) }
-
   it 'has a version number' do
     expect(Buildkit::VERSION).not_to be nil
   end
 
-  describe '.root' do
+  describe '#root' do
     it 'fetches the API root' do
       VCR.use_cassette 'root' do
         root = client.root
