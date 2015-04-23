@@ -1,5 +1,7 @@
 # Buildkit
 
+Ruby toolkit for the Buildkite API.
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -12,13 +14,15 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install buildkit
-
 ## Usage
 
-TODO: Write usage instructions here
+`Buildkit` follow the same patterns than [`Octokit`](https://github.com/octokit/octokit.rb), if you are familiar with it you should feel right at home.
+
+```ruby
+client = Buildkit.new(token: 't0k3n')
+organization = client.organization('my-great-org')
+agents = organization.rels[:agents].get.data
+```
 
 ## Development
 
