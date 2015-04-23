@@ -7,7 +7,7 @@ module AgentsAccessTokenFilter
     body = super
     body['string'].gsub!(/"access_token":\s*"\w+"/, '"access_token": "<<AGENT_ACCESS_TOKEN>>"')
     body['string'].gsub!(/"ip_address":\s*"[\d\.]+"/, '"ip_address": "127.0.0.1"')
-    body['string'].gsub!(/(Commit|Author):\s*([\w\s]+?)\s*<([\w@\.\-]+)>/) do |match|
+    body['string'].gsub!(/(Commit|Author):\s*([\w\s]+?)\s*<([\w@\.\-]+)>/) do
       "#{$1}:     Anonymous <anonymous@example.com>"
     end
     body
@@ -19,7 +19,7 @@ VCR.configure do |config|
   config.configure_rspec_metadata!
   config.cassette_library_dir = 'spec/cassettes/'
   config.hook_into :faraday
-  config.filter_sensitive_data("<<ACCESS_TOKEN>>") do
+  config.filter_sensitive_data('<<ACCESS_TOKEN>>') do
     test_buildkite_token
   end
 end

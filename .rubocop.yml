@@ -6,3 +6,14 @@ Metrics/LineLength:
 Style/Documentation:
   Enabled: false
 
+Lint/AssignmentInCondition:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 15
+
+Style/PerlBackrefs:
+  Enabled: false
+
+Style/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space

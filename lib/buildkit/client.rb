@@ -12,7 +12,7 @@ module Buildkit
     # Header keys that can be passed in options hash to {#get},{#head}
     CONVENIENCE_HEADERS = Set.new([:accept, :content_type])
 
-    def initialize(token: )
+    def initialize(token:)
       @token = token
     end
 
@@ -74,7 +74,7 @@ module Buildkit
     #
     # @return [Sawyer::Resource]
     def root
-      get "/"
+      get('/')
     end
 
     private
@@ -117,7 +117,7 @@ module Buildkit
         end
       end
       query = options.delete(:query)
-      opts = {:query => options}
+      opts = {query: options}
       opts[:query].merge!(query) if query && query.is_a?(Hash)
       opts[:headers] = headers unless headers.empty?
 

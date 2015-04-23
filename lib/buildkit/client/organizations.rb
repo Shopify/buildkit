@@ -1,6 +1,5 @@
 module Buildkit
   class Client
-
     # Methods for the Organizations API
     #
     # @see https://buildkite.com/docs/api/organizations
@@ -12,7 +11,7 @@ module Buildkit
       # @example
       #   Buildkit.organizations
       def organizations(options = {})
-        get("/v1/organizations", options)
+        get('/v1/organizations', options)
       end
 
       # Get an organization

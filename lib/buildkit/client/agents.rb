@@ -1,6 +1,5 @@
 module Buildkit
   class Client
-
     # Methods for the Agents API
     #
     # @see https://buildkite.com/docs/api/agents
