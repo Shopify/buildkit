@@ -104,7 +104,9 @@ module Buildkit
     end
 
     def sawyer_options
-      {}
+      {
+        links_parser: Sawyer::LinkParsers::Simple.new
+      }
     end
 
     def api_endpoint

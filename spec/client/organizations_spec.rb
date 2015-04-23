@@ -20,6 +20,8 @@ describe Buildkit::Client::Organizations do
         organization = client.organization('shopify')
         expect(organization.name).to be == 'Shopify'
         expect(organization.slug).to be == 'shopify'
+
+        expect(organization.rels.keys).to be == %i(self web projects agents emojis)
       end
     end
   end
