@@ -1,0 +1,58 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.buildkite.com/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Buildkit v0.1.0
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <<ACCESS_TOKEN>>
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      server:
+      - nginx/1.6.2
+      date:
+      - Thu, 23 Apr 2015 14:49:21 GMT
+      content-type:
+      - application/json; charset=utf-8
+      transfer-encoding:
+      - chunked
+      connection:
+      - close
+      status:
+      - 200 OK
+      x-frame-options:
+      - SAMEORIGIN, SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff, nosniff
+      access-control-allow-origin:
+      - "*"
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 8aaf2090-8794-4be7-a248-19a6d9752e17
+      x-runtime:
+      - '0.007489'
+      strict-transport-security:
+      - max-age=31536000; includeSubdomains
+      x-ua-compatible:
+      - chrome=1
+    body:
+      encoding: UTF-8
+      string: '{"response":"Hello World"}'
+    http_version: 
+  recorded_at: Thu, 23 Apr 2015 14:49:21 GMT
+recorded_with: VCR 2.9.3

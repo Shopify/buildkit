@@ -63,6 +63,13 @@ module Buildkit
       request :head, url, parse_query_and_convenience_headers(options)
     end
 
+    # Fetch the root resource for the API
+    #
+    # @return [Sawyer::Resource]
+    def root
+      get "/"
+    end
+
     private
 
     def request(method, path, data, options = {})
