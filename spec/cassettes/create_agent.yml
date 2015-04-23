@@ -1,0 +1,89 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.buildkite.com/v1/organizations/shopify/agents
+    body:
+      encoding: UTF-8
+      string: '{"name":"new-agent"}'
+    headers:
+      User-Agent:
+      - Buildkit v0.1.0
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <<ACCESS_TOKEN>>
+  response:
+    status:
+      code: 201
+      message: 
+    headers:
+      server:
+      - nginx/1.6.3
+      date:
+      - Thu, 23 Apr 2015 18:57:59 GMT
+      content-type:
+      - application/json; charset=utf-8
+      transfer-encoding:
+      - chunked
+      connection:
+      - close
+      status:
+      - 201 Created
+      x-frame-options:
+      - SAMEORIGIN, SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff, nosniff
+      access-control-allow-origin:
+      - "*"
+      x-accepted-oauth-scopes:
+      - write_agents
+      x-oauth-scopes:
+      - read_user,read_organizations,read_projects,write_projects,read_builds,write_builds,read_build_logs,read_agents,write_agents
+      etag:
+      - W/"7d90ae761be6ae5c3714cd8f186e87f2"
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 95717cbf-a95a-4219-a1fa-ab756acbb194
+      x-runtime:
+      - '0.088219'
+      strict-transport-security:
+      - max-age=31536000; includeSubdomains
+      x-ua-compatible:
+      - chrome=1
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "16940c91-f12d-4122-8154-0edf6c0978c2",
+          "url": "https://api.buildkite.com/v1/organizations/shopify/agents/16940c91-f12d-4122-8154-0edf6c0978c2",
+          "web_url": "https://buildkite.com/organizations/shopify/agents/16940c91-f12d-4122-8154-0edf6c0978c2",
+          "name": "new-agent",
+          "connection_state": "never_connected",
+          "ip_address": null,
+          "access_token": "<<AGENT_ACCESS_TOKEN>>",
+          "hostname": null,
+          "user_agent": null,
+          "creator": {
+            "id": "b742842f-8ce2-45ed-94db-9ae059055648",
+            "name": "Anonymous",
+            "email": "anonymous@example.com",
+            "created_at": "2015-03-19 18:19:24 UTC"
+          },
+          "created_at": "2015-04-23 18:57:59 UTC",
+          "build": null,
+          "job": null,
+          "last_job_finished_at": null,
+          "priority": null,
+          "meta_data": [
+
+          ]
+        }
+    http_version: 
+  recorded_at: Thu, 23 Apr 2015 18:57:59 GMT
+recorded_with: VCR 2.9.3

@@ -23,4 +23,22 @@ describe Buildkit::Client::Agents do
       end
     end
   end
+
+  context '#create_agent' do
+    it 'returns the newly created agent' do
+      VCR.use_cassette 'create_agent' do
+        agent = client.create_agent('shopify', 'new-agent')
+        expect(agent.name).to be == 'new-agent'
+        expect(agent.connection_state).to be == 'never_connected'
+      end
+    end
+  end
+
+  context '#delete_agent' do
+    it 'deletes the agent' do
+      VCR.use_cassette 'delete_agent' do
+        client.delete_agent('shopify', '16940c91-f12d-4122-8154-0edf6c0978c2')
+      end
+    end
+  end
 end
