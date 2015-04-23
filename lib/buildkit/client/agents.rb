@@ -48,6 +48,17 @@ module Buildkit
       def delete_agent(org, id, options = {})
         delete("/v1/organizations/#{org}/agents/#{id}", options)
       end
+
+      # Stop an agent
+      #
+      # @param org [String] Organization slug.
+      # @param id [String] Agent id.
+      # @see https://buildkite.com/docs/api/agents#stop-an-agent
+      # @example Stop an  agent
+      #   Buildkit.stop_agent('my-great-org', '16940c91-f12d-4122-8154-0edf6c0978c2')
+      def stop_agent(org, id, options = {})
+        put("/v1/organizations/#{org}/agents/#{id}/stop", options)
+      end
     end
   end
 end
