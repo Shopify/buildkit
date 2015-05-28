@@ -48,5 +48,13 @@ describe Buildkit::Client::Agents do
         client.stop_agent('shopify', '16940c91-f12d-4122-8154-0edf6c0978c2')
       end
     end
+
+    context 'with force: false option' do
+      it 'stops the agent gracefuly' do
+        VCR.use_cassette 'gracefully_stop_agent' do
+          client.stop_agent('shopify', '16940c91-f12d-4122-8154-0edf6c0978c2', force: false)
+        end
+      end
+    end
   end
 end
