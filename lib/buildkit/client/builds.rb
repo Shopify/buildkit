@@ -37,7 +37,7 @@ module Buildkit
         get("/v1/organizations/#{org}/projects/#{project}/builds", options)
       end
 
-      # List builds for a project
+      # Get a build
       #
       # @param org [String] Organization slug.
       # @param project [String] Project slug.
@@ -45,9 +45,21 @@ module Buildkit
       # @return [Sawyer::Resource] Hash representing Buildkite build.
       # @see https://buildkite.com/docs/api/builds#get-a-build
       # @example
-      #   Buildkit.project_builds('my-great-org', 'great-project', 42)
+      #   Buildkit.build('my-great-org', 'great-project', 42)
       def build(org, project, number, options = {})
         get("/v1/organizations/#{org}/projects/#{project}/builds/#{number}", options)
+      end
+
+      # Rebuild a build
+      #
+      # @param org [String] Organization slug.
+      # @param project [String] Project slug.
+      # @param number [Integer] Build number.
+      # @see https://buildkite.com/docs/api/builds#rebuild-a-build
+      # @example
+      #   Buildkit.rebuild('my-great-org', 'great-project', 42)
+      def rebuild(org, project, number, options = {})
+        put("/v1/organizations/#{org}/projects/#{project}/builds/#{number}/rebuild", options)
       end
     end
   end
