@@ -49,4 +49,13 @@ describe Buildkit::Client::Builds do
       end
     end
   end
+
+  context '#rebuild' do
+    it 'rebuilds the build' do
+      VCR.use_cassette 'rebuild' do
+        build = client.rebuild('shopify', 'shopify-borgified', 68)
+        expect(build.state).to be == 'scheduled'
+      end
+    end
+  end
 end

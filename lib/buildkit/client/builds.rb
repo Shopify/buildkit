@@ -49,6 +49,18 @@ module Buildkit
       def build(org, project, number, options = {})
         get("/v1/organizations/#{org}/projects/#{project}/builds/#{number}", options)
       end
+
+      # Rebuild a build
+      #
+      # @param org [String] Organization slug.
+      # @param project [String] Project slug.
+      # @param number [Integer] Build number.
+      # @see https://buildkite.com/docs/api/builds#rebuild-a-build
+      # @example
+      #   Buildkit.rebuild('my-great-org', 'great-project', 42)
+      def rebuild(org, project, number, options = {})
+        put("/v1/organizations/#{org}/projects/#{project}/builds/#{number}/rebuild", options)
+      end
     end
   end
 end
