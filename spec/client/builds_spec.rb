@@ -58,4 +58,23 @@ describe Buildkit::Client::Builds do
       end
     end
   end
+
+  context '#create_build' do
+    it 'starts a new build' do
+      VCR.use_cassette 'create_build' do
+        build_params = {
+          commit: 'HEAD',
+          branch: 'master',
+          message: 'Hello, world!',
+          author: {
+            name: 'Liam Neeson',
+            email: 'liam@evilbatmanvillans.com',
+          },
+        }
+
+        build = client.create_build('shopify', 'tophat', build_params)
+        expect(build.state).to be == 'scheduled'
+      end
+    end
+  end
 end

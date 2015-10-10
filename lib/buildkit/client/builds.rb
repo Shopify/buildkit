@@ -61,6 +61,26 @@ module Buildkit
       def rebuild(org, project, number, options = {})
         put("/v1/organizations/#{org}/projects/#{project}/builds/#{number}/rebuild", options)
       end
+
+      # Create a build
+      #
+      # @param org [String] Organization slug.
+      # @param project [String] Project slug.
+      # @see https://buildkite.com/docs/api/builds#create-a-build
+      # @example
+      #   Buildkit.create_build('my-great-org', 'great-project', {
+      #     commit: 'HEAD',
+      #     branch: 'master',
+      #     message: 'Hello, world!',
+      #     author: {
+      #       name: 'Liam Neeson',
+      #       email: 'liam@evilbatmanvillans.com'
+      #     }
+      #   })
+      #
+      def create_build(org, project, options = {})
+        post("/v1/organizations/#{org}/projects/#{project}/builds", options)
+      end
     end
   end
 end
