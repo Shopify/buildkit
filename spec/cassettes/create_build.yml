@@ -1,0 +1,225 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.buildkite.com/v1/organizations/shopify/projects/tophat/builds
+    body:
+      encoding: UTF-8
+      string: '{"commit":"HEAD","branch":"master","message":"Hello, world!","author":{"name":"Liam
+        Neeson","email":"liam@evilbatmanvillans.com"}}'
+    headers:
+      User-Agent:
+      - Buildkit v0.2.0
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <<ACCESS_TOKEN>>
+  response:
+    status:
+      code: 201
+      message: 
+    headers:
+      server:
+      - nginx
+      date:
+      - Sat, 10 Oct 2015 01:19:43 GMT
+      content-type:
+      - application/json; charset=utf-8
+      transfer-encoding:
+      - chunked
+      connection:
+      - close
+      x-frame-options:
+      - SAMEORIGIN, SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff, nosniff
+      access-control-allow-origin:
+      - "*"
+      x-accepted-oauth-scopes:
+      - write_builds
+      x-oauth-scopes:
+      - read_agents,write_agents,read_artifacts,read_builds,write_builds,read_build_logs,read_organizations,read_projects,write_projects,read_user
+      etag:
+      - W/"f775e1bfdf43226ee3c149a51c6e062c"
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 08a2af18-051e-44fa-8302-ddf9ab4059ab
+      x-runtime:
+      - '0.258746'
+      strict-transport-security:
+      - max-age=31536000; includeSubdomains; preload
+      x-ua-compatible:
+      - chrome=1
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "b7d23d67-f294-4339-9d2e-05dc6339cedb",
+          "url": "https://api.buildkite.com/v1/organizations/shopify/projects/tophat/builds/159",
+          "web_url": "https://buildkite.com/shopify/tophat/builds/159",
+          "number": 159,
+          "state": "scheduled",
+          "message": "Hello, world!",
+          "commit": "HEAD",
+          "branch": "master",
+          "env": {
+
+          },
+          "source": "api",
+          "creator": {
+            "id": "1cf102e9-4f6e-4588-976a-853c0450bec7",
+            "name": "Emil Stolarsky",
+            "email": "emil.stolarsky@shopify.com",
+            "created_at": "2015-05-11T20:36:02.450Z"
+          },
+          "created_at": "2015-10-10T01:19:43.371Z",
+          "scheduled_at": "2015-10-10T01:19:43.336Z",
+          "started_at": null,
+          "finished_at": null,
+          "meta_data": {
+
+          },
+          "project": {
+            "id": "0ec920e9-6607-4a82-8f87-d631b802a271",
+            "url": "https://api.buildkite.com/v1/organizations/shopify/projects/tophat",
+            "web_url": "https://buildkite.com/shopify/tophat",
+            "name": "tophat",
+            "slug": "tophat",
+            "repository": "git@github.com:Shopify/shopify.git",
+            "provider": {
+              "id": "github",
+              "webhook_url": "https://webhook.buildkite.com/deliver/77fa31cc7c6efdeb376e054b9590475f532ff58a4368efabef"
+            },
+            "builds_url": "https://api.buildkite.com/v1/organizations/shopify/projects/tophat/builds",
+            "created_at": "2015-07-24T02:09:42.341Z",
+            "steps": [
+              {
+                "type": "script",
+                "name": "wait-for-container",
+                "command": "buildkite/wait-for-container.sh",
+                "artifact_paths": "",
+                "branch_configuration": "",
+                "env": {
+
+                },
+                "timeout_in_minutes": 20,
+                "agent_query_rules": [
+                  "tophat=1"
+                ],
+                "concurrency": null,
+                "parallelism": 1
+              },
+              {
+                "type": "waiter"
+              },
+              {
+                "type": "script",
+                "name": "tophat",
+                "command": "buildkite/run-tests.rb",
+                "artifact_paths": "",
+                "branch_configuration": "",
+                "env": {
+                  "TOPHAT": "1",
+                  "TEST_SUITE": "ruby",
+                  "OVERRIDE_TOPHAT": "1"
+                },
+                "timeout_in_minutes": null,
+                "agent_query_rules": [
+                  "tophat=1"
+                ],
+                "concurrency": null,
+                "parallelism": 1
+              }
+            ],
+            "env": {
+
+            },
+            "scheduled_builds_count": 0,
+            "running_builds_count": 0,
+            "scheduled_jobs_count": 0,
+            "running_jobs_count": 0,
+            "waiting_jobs_count": 0,
+            "featured_build": {
+              "id": "76b50f90-4aaa-43be-b931-7b2aa6133fb3",
+              "url": "https://api.buildkite.com/v1/organizations/shopify/projects/tophat/builds/158",
+              "web_url": "https://buildkite.com/shopify/tophat/builds/158",
+              "number": 158,
+              "state": "canceled",
+              "message": "Tophat on Demand",
+              "commit": "663258d1bc1759af9776b8ee8d5341255bffefe2",
+              "branch": "master",
+              "env": {
+
+              },
+              "source": "ui",
+              "creator": {
+                "id": "1cf102e9-4f6e-4588-976a-853c0450bec7",
+                "name": "Emil Stolarsky",
+                "email": "emil.stolarsky@shopify.com",
+                "created_at": "2015-05-11T20:36:02.450Z"
+              },
+              "created_at": "2015-10-09T21:17:41.939Z",
+              "scheduled_at": "2015-10-09T21:17:41.916Z",
+              "started_at": "2015-10-09T21:17:44.000Z",
+              "finished_at": "2015-10-09T21:22:21.000Z",
+              "meta_data": {
+                "buildkite:git:branch": "* master",
+                "buildkite:git:commit": "commit 663258d1bc1759af9776b8ee8d5341255bffefe2\nMerge: 93aa163 4e01d3a\nAuthor:     Anonymous <anonymous@example.com>\nAuthorDate: Fri Oct 9 16:53:45 2015 -0400\nCommit:     Anonymous <anonymous@example.com>\nCommitDate: Fri Oct 9 16:53:45 2015 -0400\n\n    Merge pull request #55798 from Shopify/create-customer-events\n    \n    Log new customer events"
+              }
+            }
+          },
+          "jobs": [
+            {
+              "id": "d12a4b13-14b6-4c47-b950-8e051720374c",
+              "type": "script",
+              "name": "wait-for-container",
+              "state": "scheduled",
+              "build_url": "https://api.buildkite.com/v1/organizations/shopify/projects/tophat/builds/159",
+              "web_url": "https://buildkite.com/shopify/tophat/builds/159#d12a4b13-14b6-4c47-b950-8e051720374c",
+              "log_url": "https://api.buildkite.com/v1/organizations/shopify/projects/tophat/builds/159/jobs/d12a4b13-14b6-4c47-b950-8e051720374c/log",
+              "raw_log_url": "https://api.buildkite.com/v1/organizations/shopify/projects/tophat/builds/159/jobs/d12a4b13-14b6-4c47-b950-8e051720374c/log.txt",
+              "artifacts_url": "https://api.buildkite.com/v1/organizations/shopify/projects/tophat/builds/159/jobs/d12a4b13-14b6-4c47-b950-8e051720374c/artifacts",
+              "script_path": "buildkite/wait-for-container.sh",
+              "command": "buildkite/wait-for-container.sh",
+              "exit_status": null,
+              "artifact_paths": "",
+              "agent": null,
+              "created_at": "2015-10-10T01:19:43.431Z",
+              "scheduled_at": "2015-10-10T01:19:43.377Z",
+              "started_at": null,
+              "finished_at": null
+            },
+            {
+              "id": "35cdeb71-851e-4fcb-953b-cb7f40eab8b6",
+              "type": "waiter"
+            },
+            {
+              "id": "55cd5923-82e3-4f8e-84dc-86b7cfd43c27",
+              "type": "script",
+              "name": "tophat",
+              "state": "waiting",
+              "build_url": "https://api.buildkite.com/v1/organizations/shopify/projects/tophat/builds/159",
+              "web_url": "https://buildkite.com/shopify/tophat/builds/159#55cd5923-82e3-4f8e-84dc-86b7cfd43c27",
+              "log_url": "https://api.buildkite.com/v1/organizations/shopify/projects/tophat/builds/159/jobs/55cd5923-82e3-4f8e-84dc-86b7cfd43c27/log",
+              "raw_log_url": "https://api.buildkite.com/v1/organizations/shopify/projects/tophat/builds/159/jobs/55cd5923-82e3-4f8e-84dc-86b7cfd43c27/log.txt",
+              "artifacts_url": "https://api.buildkite.com/v1/organizations/shopify/projects/tophat/builds/159/jobs/55cd5923-82e3-4f8e-84dc-86b7cfd43c27/artifacts",
+              "script_path": "buildkite/run-tests.rb",
+              "command": "buildkite/run-tests.rb",
+              "exit_status": null,
+              "artifact_paths": "",
+              "agent": null,
+              "created_at": "2015-10-10T01:19:43.443Z",
+              "scheduled_at": "2015-10-10T01:19:43.377Z",
+              "started_at": null,
+              "finished_at": null
+            }
+          ]
+        }
+    http_version: 
+  recorded_at: Sat, 10 Oct 2015 01:19:43 GMT
+recorded_with: VCR 2.9.3
