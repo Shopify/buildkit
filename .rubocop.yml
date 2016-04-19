@@ -1,5 +1,8 @@
 inherit_from: .rubocop_todo.yml
 
+AllCops:
+  TargetRubyVersion: 2.1
+
 Metrics/LineLength:
   Max: 120
 
@@ -33,5 +36,8 @@ Style/PerlBackrefs:
 Style/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
 
-Style/TrailingComma:
+Style/TrailingCommaInLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: comma

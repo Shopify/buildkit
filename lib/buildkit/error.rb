@@ -98,12 +98,8 @@ module Buildkit
     def build_error_message
       return nil if @response.nil?
 
-      message =  "#{@response[:method].to_s.upcase} "
-      message << redact_url(@response[:url].to_s) + ': '
-      message << "#{@response[:status]} - "
-      message << "#{response_message}" unless response_message.nil?
-      message << "#{response_error}" unless response_error.nil?
-      message << "#{response_error_summary}" unless response_error_summary.nil?
+      message = "#{@response[:method].to_s.upcase} #{redact_url(@response[:url].to_s)}: #{@response[:status]} - "
+      message << "#{response_message}#{response_error}#{response_error_summary}"
       message << " // See: #{documentation_url}" unless documentation_url.nil?
       message
     end
