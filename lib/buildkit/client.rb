@@ -26,7 +26,7 @@ module Buildkit
       builder.adapter Faraday.default_adapter
     end
 
-    def initialize(endpoint: DEFAULT_ENDPOINT, token:)
+    def initialize(endpoint: ENV.fetch("BUILDKITE_API_ENDPOINT", DEFAULT_ENDPOINT), token: ENV.fetch("BUILDKITE_API_TOKEN"))
       @endpoint = endpoint
       @token = token
     end
