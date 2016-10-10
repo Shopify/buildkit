@@ -12,7 +12,7 @@ module Buildkit
     include Organizations
     include Projects
 
-    DEFAULT_ENDPOINT = "https://api.buildkite.com/v1/"
+    DEFAULT_ENDPOINT = 'https://api.buildkite.com/v1/'.freeze
 
     # Header keys that can be passed in options hash to {#get},{#head}
     CONVENIENCE_HEADERS = Set.new([:accept, :content_type])
@@ -26,7 +26,8 @@ module Buildkit
       builder.adapter Faraday.default_adapter
     end
 
-    def initialize(endpoint: ENV.fetch("BUILDKITE_API_ENDPOINT", DEFAULT_ENDPOINT), token: ENV.fetch("BUILDKITE_API_TOKEN"))
+    def initialize(endpoint: ENV.fetch('BUILDKITE_API_ENDPOINT', DEFAULT_ENDPOINT),
+                   token: ENV.fetch('BUILDKITE_API_TOKEN'))
       @endpoint = endpoint
       @token = token
     end
