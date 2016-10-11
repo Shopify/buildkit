@@ -12,6 +12,8 @@ module Buildkit
     include Organizations
     include Projects
 
+    DEFAULT_ENDPOINT = 'https://api.buildkite.com/v1/'.freeze
+
     # Header keys that can be passed in options hash to {#get},{#head}
     CONVENIENCE_HEADERS = Set.new([:accept, :content_type])
 
@@ -24,13 +26,15 @@ module Buildkit
       builder.adapter Faraday.default_adapter
     end
 
-    def initialize(token:)
+    def initialize(endpoint: ENV.fetch('BUILDKITE_API_ENDPOINT', DEFAULT_ENDPOINT),
+                   token: ENV.fetch('BUILDKITE_API_TOKEN'))
+      @endpoint = endpoint
       @token = token
     end
 
     # Make a HTTP GET request
     #
-    # @param url [String] The path, relative to {#api_endpoint}
+    # @param url [String] The path, relative to {@endpoint}
     # @param options [Hash] Query and header params for request
     # @return [Sawyer::Resource]
     def get(url, options = {})
@@ -39,7 +43,7 @@ module Buildkit
 
     # Make a HTTP POST request
     #
-    # @param url [String] The path, relative to {#api_endpoint}
+    # @param url [String] The path, relative to {@endpoint}
     # @param options [Hash] Body and header params for request
     # @return [Sawyer::Resource]
     def post(url, options = {})
@@ -48,7 +52,7 @@ module Buildkit
 
     # Make a HTTP PUT request
     #
-    # @param url [String] The path, relative to {#api_endpoint}
+    # @param url [String] The path, relative to {@endpoint}
     # @param options [Hash] Body and header params for request
     # @return [Sawyer::Resource]
     def put(url, options = {})
@@ -57,7 +61,7 @@ module Buildkit
 
     # Make a HTTP PATCH request
     #
-    # @param url [String] The path, relative to {#api_endpoint}
+    # @param url [String] The path, relative to {@endpoint}
     # @param options [Hash] Body and header params for request
     # @return [Sawyer::Resource]
     def patch(url, options = {})
@@ -66,7 +70,7 @@ module Buildkit
 
     # Make a HTTP DELETE request
     #
-    # @param url [String] The path, relative to {#api_endpoint}
+    # @param url [String] The path, relative to {@endpoint}
     # @param options [Hash] Query and header params for request
     # @return [Sawyer::Resource]
     def delete(url, options = {})
@@ -75,7 +79,7 @@ module Buildkit
 
     # Make a HTTP HEAD request
     #
-    # @param url [String] The path, relative to {#api_endpoint}
+    # @param url [String] The path, relative to {@endpoint}
     # @param options [Hash] Query and header params for request
     # @return [Sawyer::Resource]
     def head(url, options = {})
@@ -107,7 +111,7 @@ module Buildkit
     end
 
     def sawyer_agent
-      @agent ||= Sawyer::Agent.new(api_endpoint, sawyer_options) do |http|
+      @agent ||= Sawyer::Agent.new(@endpoint, sawyer_options) do |http|
         http.headers[:accept] = 'application/json'
         http.headers[:content_type] = 'application/json'
         http.headers[:user_agent] = "Buildkit v#{Buildkit::VERSION}"
@@ -120,10 +124,6 @@ module Buildkit
         links_parser: Sawyer::LinkParsers::Simple.new,
         faraday: Faraday.new(builder: MIDDLEWARE),
       }
-    end
-
-    def api_endpoint
-      'https://api.buildkite.com/v1/'
     end
 
     def parse_query_and_convenience_headers(options)
