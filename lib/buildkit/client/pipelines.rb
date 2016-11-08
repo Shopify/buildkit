@@ -25,6 +25,29 @@ module Buildkit
       def pipeline(org, pipeline, options = {})
         get("/v2/organizations/#{org}/pipelines/#{pipeline}", options)
       end
+
+      # Create a pipeline
+      #
+      # @param org [String] Organization slug.
+      # @see https://buildkite.com/docs/api/pipelines#create-a-pipeline
+      # @example
+      #   Buildkit.create_build('my-great-org', {
+      #     name: 'My pipeline',
+      #     repository: 'git@github.com:acme/pipeline.git',
+      #     steps: [
+      #       {
+      #         type: 'script',
+      #         name: 'Build',
+      #         command: 'script/build.sh'
+      #       }
+      #     ],
+      #     timeout_in_minutes: 10,
+      #     agent_query_rules: ['test=true']
+      #   })
+      #
+      def create_pipeline(org, options = {})
+        post("/v2/organizations/#{org}/pipelines", options)
+      end
     end
   end
 end

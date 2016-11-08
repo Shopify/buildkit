@@ -21,4 +21,27 @@ describe Buildkit::Client::Pipelines do
       end
     end
   end
+
+  context '#create_pipeline' do
+    it 'creates a new pipeline' do
+      VCR.use_cassette 'create_pipeline' do
+        pipeline_params = {
+          name: 'My pipeline',
+          repository: 'git@github.com:acme/pipeline.git',
+          steps: [
+            {
+              type: 'script',
+              name: 'Build',
+              command: 'script/build.sh',
+            },
+          ],
+          timeout_in_minutes: 10,
+          agent_query_rules: ['test=true'],
+        }
+
+        pipeline = client.create_pipeline('shopify', pipeline_params)
+        expect(pipeline.slug).to be == 'my-pipeline'
+      end
+    end
+  end
 end

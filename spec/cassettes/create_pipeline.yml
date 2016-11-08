@@ -1,0 +1,121 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.buildkite.com/v2/organizations/shopify/pipelines
+    body:
+      encoding: UTF-8
+      string: '{"name":"My pipeline","repository":"git@github.com:acme/pipeline.git","steps":[{"type":"script","name":"Build","command":"script/build.sh"}],"timeout_in_minutes":10,"agent_query_rules":["test=true"]}'
+    headers:
+      User-Agent:
+      - Buildkit v0.4.0
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <<ACCESS_TOKEN>>
+  response:
+    status:
+      code: 201
+      message: 
+    headers:
+      date:
+      - Tue, 08 Nov 2016 19:22:51 GMT
+      content-type:
+      - application/json; charset=utf-8
+      transfer-encoding:
+      - chunked
+      connection:
+      - close
+      server:
+      - nginx
+      x-frame-options:
+      - SAMEORIGIN, SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff, nosniff
+      access-control-allow-origin:
+      - "*"
+      access-control-expose-headers:
+      - Link
+      rate-limit-remaining:
+      - '90'
+      rate-limit-limit:
+      - '100'
+      rate-limit-reset:
+      - '9'
+      x-accepted-oauth-scopes:
+      - write_pipelines
+      x-oauth-scopes:
+      - read_agents,read_builds,write_builds,read_job_env,read_build_logs,read_organizations,read_pipelines,write_pipelines,read_user
+      etag:
+      - W/"c986221154daf5b0f1cf80f6162511f1"
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 05791ddd-0b36-43b0-b0ed-f45bc2654cef
+      x-runtime:
+      - '0.066921'
+      strict-transport-security:
+      - max-age=31536000; includeSubdomains; preload
+      x-ua-compatible:
+      - chrome=1
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "23da359e-1a8a-4d40-9b90-1c2e0b4b3f7c",
+          "url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/my-pipeline",
+          "web_url": "https://buildkite.com/shopify/my-pipeline",
+          "name": "My pipeline",
+          "slug": "my-pipeline",
+          "repository": "git@github.com:acme/pipeline.git",
+          "provider": {
+            "id": "github",
+            "settings": {
+              "publish_commit_status": true,
+              "build_pull_requests": true,
+              "build_pull_request_forks": false,
+              "build_tags": false,
+              "publish_commit_status_per_step": false,
+              "skip_pull_request_builds_for_existing_commits": true,
+              "trigger_mode": "code",
+              "repository": "acme/pipeline"
+            },
+            "webhook_url": "https://webhook.buildkite.com/deliver/4446b4f13858f3125e1198cd6b30b4700d341f3bbbac6e1364"
+          },
+          "builds_url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/my-pipeline/builds",
+          "badge_url": "https://badge.buildkite.com/a6548aba516986c8d82958d408280e05f57b52a38a0aa98660.svg",
+          "created_at": "2016-11-08T19:22:51.390Z",
+          "steps": [
+            {
+              "type": "script",
+              "name": "Build",
+              "command": "script/build.sh",
+              "artifact_paths": null,
+              "branch_configuration": null,
+              "env": {
+
+              },
+              "timeout_in_minutes": null,
+              "agent_query_rules": [
+
+              ],
+              "concurrency": null,
+              "parallelism": null
+            }
+          ],
+          "env": {
+
+          },
+          "scheduled_builds_count": 0,
+          "running_builds_count": 0,
+          "scheduled_jobs_count": 0,
+          "running_jobs_count": 0,
+          "waiting_jobs_count": 0
+        }
+    http_version: 
+  recorded_at: Tue, 08 Nov 2016 19:22:51 GMT
+recorded_with: VCR 2.9.3
