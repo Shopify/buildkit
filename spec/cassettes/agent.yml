@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.buildkite.com/v1/organizations/shopify/agents/60c64470-3930-4297-8a45-786e9bec3ea6
+    uri: https://api.buildkite.com/v2/organizations/shopify/agents/60c64470-3930-4297-8a45-786e9bec3ea6
     body:
       encoding: US-ASCII
       string: ''
@@ -43,7 +43,7 @@ http_interactions:
       x-accepted-oauth-scopes:
       - read_agents
       x-oauth-scopes:
-      - read_user,read_organizations,read_projects,write_projects,read_builds,write_builds,read_build_logs,read_agents,write_agents
+      - read_user,read_organizations,read_pipelines,write_pipelines,read_builds,write_builds,read_build_logs,read_agents,write_agents
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
@@ -59,7 +59,7 @@ http_interactions:
       string: |
         {
           "id": "60c64470-3930-4297-8a45-786e9bec3ea6",
-          "url": "https://api.buildkite.com/v1/organizations/shopify/agents/60c64470-3930-4297-8a45-786e9bec3ea6",
+          "url": "https://api.buildkite.com/v2/organizations/shopify/agents/60c64470-3930-4297-8a45-786e9bec3ea6",
           "web_url": "https://buildkite.com/organizations/shopify/agents/60c64470-3930-4297-8a45-786e9bec3ea6",
           "name": "a2.bk3.ec2.shopify.com",
           "connection_state": "connected",

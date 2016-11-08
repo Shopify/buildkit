@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.buildkite.com/v1/organizations/shopify
+    uri: https://api.buildkite.com/v2/organizations/shopify
     body:
       encoding: US-ASCII
       string: ''
@@ -43,7 +43,7 @@ http_interactions:
       x-accepted-oauth-scopes:
       - read_organizations
       x-oauth-scopes:
-      - read_user,read_organizations,read_projects,write_projects,read_builds,write_builds,read_build_logs,read_agents,write_agents
+      - read_user,read_organizations,read_pipelines,write_pipelines,read_builds,write_builds,read_build_logs,read_agents,write_agents
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
@@ -59,13 +59,13 @@ http_interactions:
       string: |
         {
           "id": "b565fb3e-c660-4bb2-9df7-e9d484d69d38",
-          "url": "https://api.buildkite.com/v1/organizations/shopify",
+          "url": "https://api.buildkite.com/v2/organizations/shopify",
           "web_url": "https://buildkite.com/shopify",
           "name": "Shopify",
           "slug": "shopify",
-          "projects_url": "https://api.buildkite.com/v1/organizations/shopify/projects",
-          "agents_url": "https://api.buildkite.com/v1/organizations/shopify/agents",
-          "emojis_url": "https://api.buildkite.com/v1/organizations/shopify/emojis",
+          "pipelines_url": "https://api.buildkite.com/v2/organizations/shopify/pipelines",
+          "agents_url": "https://api.buildkite.com/v2/organizations/shopify/agents",
+          "emojis_url": "https://api.buildkite.com/v2/organizations/shopify/emojis",
           "created_at": "2015-03-11 13:21:13 UTC"
         }
     http_version: 

@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: delete
-    uri: https://api.buildkite.com/v1/organizations/shopify/agents/16940c91-f12d-4122-8154-0edf6c0978c2
+    uri: https://api.buildkite.com/v2/organizations/shopify/agents/16940c91-f12d-4122-8154-0edf6c0978c2
     body:
       encoding: UTF-8
       string: "{}"
@@ -39,7 +39,7 @@ http_interactions:
       x-accepted-oauth-scopes:
       - write_agents
       x-oauth-scopes:
-      - read_user,read_organizations,read_projects,write_projects,read_builds,write_builds,read_build_logs,read_agents,write_agents
+      - read_user,read_organizations,read_pipelines,write_pipelines,read_builds,write_builds,read_build_logs,read_agents,write_agents
       cache-control:
       - no-cache
       x-request-id:

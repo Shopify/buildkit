@@ -11,7 +11,7 @@ module Buildkit
       # @example
       #   Buildkit.agents('my-great-org')
       def agents(org, options = {})
-        get("/v1/organizations/#{org}/agents", options)
+        get("/v2/organizations/#{org}/agents", options)
       end
 
       # Get an agent
@@ -23,7 +23,7 @@ module Buildkit
       # @example
       #   Buildkit.agent('my-great-org', '0b461f65-e7be-4c80-888a-ef11d81fd971')
       def agent(org, id, options = {})
-        get("/v1/organizations/#{org}/agents/#{id}", options)
+        get("/v2/organizations/#{org}/agents/#{id}", options)
       end
 
       # Create an agent
@@ -35,7 +35,7 @@ module Buildkit
       # @example Create a new Agent for an organization
       #   Buildkit.create_agent('my-great-org', 'new-agent')
       def create_agent(org, name, options = {})
-        post("/v1/organizations/#{org}/agents", options.merge(name: name))
+        post("/v2/organizations/#{org}/agents", options.merge(name: name))
       end
 
       # Delete an agent
@@ -46,7 +46,7 @@ module Buildkit
       # @example Delete an existing agent
       #   Buildkit.delete_agent('my-great-org', '16940c91-f12d-4122-8154-0edf6c0978c2')
       def delete_agent(org, id, options = {})
-        delete("/v1/organizations/#{org}/agents/#{id}", options)
+        delete("/v2/organizations/#{org}/agents/#{id}", options)
       end
 
       # Stop an agent
@@ -57,7 +57,7 @@ module Buildkit
       # @example Stop an  agent
       #   Buildkit.stop_agent('my-great-org', '16940c91-f12d-4122-8154-0edf6c0978c2')
       def stop_agent(org, id, options = {})
-        put("/v1/organizations/#{org}/agents/#{id}/stop", options)
+        put("/v2/organizations/#{org}/agents/#{id}/stop", options)
       end
     end
   end
