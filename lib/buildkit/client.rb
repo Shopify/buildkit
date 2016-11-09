@@ -2,7 +2,7 @@ require 'sawyer'
 require 'buildkit/client/agents'
 require 'buildkit/client/builds'
 require 'buildkit/client/organizations'
-require 'buildkit/client/projects'
+require 'buildkit/client/pipelines'
 require 'buildkit/response/raise_error'
 
 module Buildkit
@@ -10,9 +10,9 @@ module Buildkit
     include Agents
     include Builds
     include Organizations
-    include Projects
+    include Pipelines
 
-    DEFAULT_ENDPOINT = 'https://api.buildkite.com/v1/'.freeze
+    DEFAULT_ENDPOINT = 'https://api.buildkite.com/v2/'.freeze
 
     # Header keys that can be passed in options hash to {#get},{#head}
     CONVENIENCE_HEADERS = Set.new([:accept, :content_type])

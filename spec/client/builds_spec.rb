@@ -27,10 +27,10 @@ describe Buildkit::Client::Builds do
     end
   end
 
-  context '#project_builds' do
+  context '#pipeline_builds' do
     it 'returns the list of builds' do
-      VCR.use_cassette 'project_builds' do
-        builds = client.project_builds('shopify', 'shopify-borgified', per_page: 2)
+      VCR.use_cassette 'pipeline_builds' do
+        builds = client.pipeline_builds('shopify', 'shopify-borgified', per_page: 2)
         expect(builds.size).to be == 2
 
         build = builds.first

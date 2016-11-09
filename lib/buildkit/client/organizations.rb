@@ -11,7 +11,7 @@ module Buildkit
       # @example
       #   Buildkit.organizations
       def organizations(options = {})
-        get('/v1/organizations', options)
+        get('/v2/organizations', options)
       end
 
       # Get an organization
@@ -22,7 +22,7 @@ module Buildkit
       # @example
       #   Buildkit.organization('my-great-org')
       def organization(org, options = {})
-        get("/v1/organizations/#{org}", options)
+        get("/v2/organizations/#{org}", options)
       end
     end
   end

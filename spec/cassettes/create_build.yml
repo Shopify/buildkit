@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://api.buildkite.com/v1/organizations/shopify/projects/tophat/builds
+    uri: https://api.buildkite.com/v2/organizations/shopify/pipelines/tophat/builds
     body:
       encoding: UTF-8
       string: '{"commit":"HEAD","branch":"master","message":"Hello, world!","author":{"name":"Liam
@@ -42,7 +42,7 @@ http_interactions:
       x-accepted-oauth-scopes:
       - write_builds
       x-oauth-scopes:
-      - read_agents,write_agents,read_artifacts,read_builds,write_builds,read_build_logs,read_organizations,read_projects,write_projects,read_user
+      - read_agents,write_agents,read_artifacts,read_builds,write_builds,read_build_logs,read_organizations,read_pipelines,write_pipelines,read_user
       etag:
       - W/"f775e1bfdf43226ee3c149a51c6e062c"
       cache-control:
@@ -60,7 +60,7 @@ http_interactions:
       string: |
         {
           "id": "b7d23d67-f294-4339-9d2e-05dc6339cedb",
-          "url": "https://api.buildkite.com/v1/organizations/shopify/projects/tophat/builds/159",
+          "url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/tophat/builds/159",
           "web_url": "https://buildkite.com/shopify/tophat/builds/159",
           "number": 159,
           "state": "scheduled",
@@ -84,9 +84,9 @@ http_interactions:
           "meta_data": {
 
           },
-          "project": {
+          "pipeline": {
             "id": "0ec920e9-6607-4a82-8f87-d631b802a271",
-            "url": "https://api.buildkite.com/v1/organizations/shopify/projects/tophat",
+            "url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/tophat",
             "web_url": "https://buildkite.com/shopify/tophat",
             "name": "tophat",
             "slug": "tophat",
@@ -95,7 +95,7 @@ http_interactions:
               "id": "github",
               "webhook_url": "https://webhook.buildkite.com/deliver/77fa31cc7c6efdeb376e054b9590475f532ff58a4368efabef"
             },
-            "builds_url": "https://api.buildkite.com/v1/organizations/shopify/projects/tophat/builds",
+            "builds_url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/tophat/builds",
             "created_at": "2015-07-24T02:09:42.341Z",
             "steps": [
               {
@@ -146,7 +146,7 @@ http_interactions:
             "waiting_jobs_count": 0,
             "featured_build": {
               "id": "76b50f90-4aaa-43be-b931-7b2aa6133fb3",
-              "url": "https://api.buildkite.com/v1/organizations/shopify/projects/tophat/builds/158",
+              "url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/tophat/builds/158",
               "web_url": "https://buildkite.com/shopify/tophat/builds/158",
               "number": 158,
               "state": "canceled",
@@ -179,11 +179,11 @@ http_interactions:
               "type": "script",
               "name": "wait-for-container",
               "state": "scheduled",
-              "build_url": "https://api.buildkite.com/v1/organizations/shopify/projects/tophat/builds/159",
+              "build_url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/tophat/builds/159",
               "web_url": "https://buildkite.com/shopify/tophat/builds/159#d12a4b13-14b6-4c47-b950-8e051720374c",
-              "log_url": "https://api.buildkite.com/v1/organizations/shopify/projects/tophat/builds/159/jobs/d12a4b13-14b6-4c47-b950-8e051720374c/log",
-              "raw_log_url": "https://api.buildkite.com/v1/organizations/shopify/projects/tophat/builds/159/jobs/d12a4b13-14b6-4c47-b950-8e051720374c/log.txt",
-              "artifacts_url": "https://api.buildkite.com/v1/organizations/shopify/projects/tophat/builds/159/jobs/d12a4b13-14b6-4c47-b950-8e051720374c/artifacts",
+              "log_url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/tophat/builds/159/jobs/d12a4b13-14b6-4c47-b950-8e051720374c/log",
+              "raw_log_url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/tophat/builds/159/jobs/d12a4b13-14b6-4c47-b950-8e051720374c/log.txt",
+              "artifacts_url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/tophat/builds/159/jobs/d12a4b13-14b6-4c47-b950-8e051720374c/artifacts",
               "script_path": "buildkite/wait-for-container.sh",
               "command": "buildkite/wait-for-container.sh",
               "exit_status": null,
@@ -203,11 +203,11 @@ http_interactions:
               "type": "script",
               "name": "tophat",
               "state": "waiting",
-              "build_url": "https://api.buildkite.com/v1/organizations/shopify/projects/tophat/builds/159",
+              "build_url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/tophat/builds/159",
               "web_url": "https://buildkite.com/shopify/tophat/builds/159#55cd5923-82e3-4f8e-84dc-86b7cfd43c27",
-              "log_url": "https://api.buildkite.com/v1/organizations/shopify/projects/tophat/builds/159/jobs/55cd5923-82e3-4f8e-84dc-86b7cfd43c27/log",
-              "raw_log_url": "https://api.buildkite.com/v1/organizations/shopify/projects/tophat/builds/159/jobs/55cd5923-82e3-4f8e-84dc-86b7cfd43c27/log.txt",
-              "artifacts_url": "https://api.buildkite.com/v1/organizations/shopify/projects/tophat/builds/159/jobs/55cd5923-82e3-4f8e-84dc-86b7cfd43c27/artifacts",
+              "log_url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/tophat/builds/159/jobs/55cd5923-82e3-4f8e-84dc-86b7cfd43c27/log",
+              "raw_log_url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/tophat/builds/159/jobs/55cd5923-82e3-4f8e-84dc-86b7cfd43c27/log.txt",
+              "artifacts_url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/tophat/builds/159/jobs/55cd5923-82e3-4f8e-84dc-86b7cfd43c27/artifacts",
               "script_path": "buildkite/run-tests.rb",
               "command": "buildkite/run-tests.rb",
               "exit_status": null,

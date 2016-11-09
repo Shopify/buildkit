@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.buildkite.com/v1/organizations/shopify/projects?per_page=2
+    uri: https://api.buildkite.com/v2/organizations/shopify/pipelines?per_page=2
     body:
       encoding: US-ASCII
       string: ''
@@ -41,13 +41,13 @@ http_interactions:
       access-control-allow-origin:
       - "*"
       x-accepted-oauth-scopes:
-      - read_projects
+      - read_pipelines
       link:
-      - <https://api.buildkite.com/v1/organizations/shopify/projects?page=2&per_page=2>;
-        rel="next", <https://api.buildkite.com/v1/organizations/shopify/projects?page=3&per_page=2>;
+      - <https://api.buildkite.com/v2/organizations/shopify/pipelines?page=2&per_page=2>;
+        rel="next", <https://api.buildkite.com/v2/organizations/shopify/pipelines?page=3&per_page=2>;
         rel="last"
       x-oauth-scopes:
-      - read_user,read_organizations,read_projects,write_projects,read_builds,write_builds,read_build_logs,read_agents,write_agents
+      - read_user,read_organizations,read_pipelines,write_pipelines,read_builds,write_builds,read_build_logs,read_agents,write_agents
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
@@ -64,7 +64,7 @@ http_interactions:
         [
           {
             "id": "5c6894bc-948c-4423-b536-987fd0332912",
-            "url": "https://api.buildkite.com/v1/organizations/shopify/projects/shopify-borgified",
+            "url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-borgified",
             "web_url": "https://buildkite.com/shopify/shopify-borgified",
             "name": "shopify-borgified",
             "slug": "shopify-borgified",
@@ -73,7 +73,7 @@ http_interactions:
               "id": "github",
               "webhook_url": "https://webhook.buildkite.com/deliver/597fb5587a1da3b36b7abb0050e3ad6650b514138991d7053f"
             },
-            "builds_url": "https://api.buildkite.com/v1/organizations/shopify/projects/shopify-borgified/builds",
+            "builds_url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-borgified/builds",
             "created_at": "2015-04-21 14:44:26 UTC",
             "steps": [
               {
@@ -116,7 +116,7 @@ http_interactions:
             },
             "featured_build": {
               "id": "500713d1-8aa3-46d4-a58a-d6a795056c6d",
-              "url": "https://api.buildkite.com/v1/organizations/shopify/projects/shopify-borgified/builds/68",
+              "url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-borgified/builds/68",
               "web_url": "https://buildkite.com/shopify/shopify-borgified/builds/68",
               "number": 68,
               "state": "failed",
@@ -141,7 +141,7 @@ http_interactions:
           },
           {
             "id": "4c47bc4e-03cc-49dd-9f7f-0b7e986f77bb",
-            "url": "https://api.buildkite.com/v1/organizations/shopify/projects/shopify-for-iphone",
+            "url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-for-iphone",
             "web_url": "https://buildkite.com/shopify/shopify-for-iphone",
             "name": "Shopify for iPhone",
             "slug": "shopify-for-iphone",
@@ -150,7 +150,7 @@ http_interactions:
               "id": "github",
               "webhook_url": "https://webhook.buildkite.com/deliver/2452a4d474037955a2e9f9078985a40900d9184cdb1949639f"
             },
-            "builds_url": "https://api.buildkite.com/v1/organizations/shopify/projects/shopify-for-iphone/builds",
+            "builds_url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-for-iphone/builds",
             "created_at": "2015-04-20 20:21:41 UTC",
             "steps": [
               {
@@ -171,7 +171,7 @@ http_interactions:
             },
             "featured_build": {
               "id": "00f2a763-86c8-4597-a290-2e5f55e3c3e6",
-              "url": "https://api.buildkite.com/v1/organizations/shopify/projects/shopify-for-iphone/builds/39",
+              "url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-for-iphone/builds/39",
               "web_url": "https://buildkite.com/shopify/shopify-for-iphone/builds/39",
               "number": 39,
               "state": "failed",
