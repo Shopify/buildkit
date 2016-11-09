@@ -3,6 +3,7 @@ require 'buildkit/client/agents'
 require 'buildkit/client/builds'
 require 'buildkit/client/organizations'
 require 'buildkit/client/pipelines'
+require 'buildkit/client/jobs'
 require 'buildkit/response/raise_error'
 
 module Buildkit
@@ -11,6 +12,7 @@ module Buildkit
     include Builds
     include Organizations
     include Pipelines
+    include Jobs
 
     DEFAULT_ENDPOINT = 'https://api.buildkite.com/v2/'.freeze
 

@@ -1,0 +1,76 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-branches/builds/191425/jobs/7372c88b-320d-4a2e-bdf8-6e2fc9259fbe/env
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Buildkit v0.4.0
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <<ACCESS_TOKEN>>
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      date:
+      - Wed, 09 Nov 2016 19:30:59 GMT
+      content-type:
+      - application/json; charset=utf-8
+      transfer-encoding:
+      - chunked
+      connection:
+      - close
+      server:
+      - nginx
+      x-frame-options:
+      - SAMEORIGIN, SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff, nosniff
+      access-control-allow-origin:
+      - "*"
+      access-control-expose-headers:
+      - Link
+      rate-limit-remaining:
+      - '99'
+      rate-limit-limit:
+      - '100'
+      rate-limit-reset:
+      - '1'
+      x-accepted-oauth-scopes:
+      - read_job_env
+      x-oauth-scopes:
+      - read_builds,write_builds,read_job_env
+      etag:
+      - W/"9060b9a50d71dc4c361f7f99593f2ed4"
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 1386bcc5-c930-49ee-b1ea-3864f46b2e73
+      x-runtime:
+      - '0.027687'
+      strict-transport-security:
+      - max-age=31536000; includeSubdomains; preload
+      x-ua-compatible:
+      - chrome=1
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "env": {
+            "BUILDBOX_JOB_ID": "7372c88b-320d-4a2e-bdf8-6e2fc9259fbe",
+            "BUILDKITE_RETRY_COUNT": "3"
+          }
+        }
+    http_version: 
+  recorded_at: Wed, 09 Nov 2016 19:30:59 GMT
+recorded_with: VCR 2.9.3
