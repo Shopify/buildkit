@@ -22,14 +22,20 @@ module Buildkit
     # In Faraday 0.9, Faraday::Builder was renamed to Faraday::RackBuilder
     RACK_BUILDER_CLASS = defined?(Faraday::RackBuilder) ? Faraday::RackBuilder : Faraday::Builder
 
-    # Default Faraday middleware stack
-    MIDDLEWARE = RACK_BUILDER_CLASS.new do |builder|
-      builder.use Buildkit::Response::RaiseError
-      builder.adapter Faraday.default_adapter
+    class << self
+      def build_middleware
+        RACK_BUILDER_CLASS.new do |builder|
+          builder.use Buildkit::Response::RaiseError
+          builder.adapter Faraday.default_adapter
+          yield builder if block_given?
+        end
+      end
     end
 
     def initialize(endpoint: ENV.fetch('BUILDKITE_API_ENDPOINT', DEFAULT_ENDPOINT),
-                   token: ENV.fetch('BUILDKITE_API_TOKEN'))
+                   token: ENV.fetch('BUILDKITE_API_TOKEN'),
+                   middleware: self.class.build_middleware)
+      @middleware = middleware
       @endpoint = endpoint
       @token = token
     end
@@ -124,7 +130,7 @@ module Buildkit
     def sawyer_options
       {
         links_parser: Sawyer::LinkParsers::Simple.new,
-        faraday: Faraday.new(builder: MIDDLEWARE),
+        faraday: Faraday.new(builder: @middleware),
       }
     end
 
