@@ -48,6 +48,21 @@ module Buildkit
       def create_pipeline(org, options = {})
         post("/v2/organizations/#{org}/pipelines", options)
       end
+
+      # Update a pipeline
+      #
+      # @param org [String] Organization slug.
+      # @param pipeline [String] pipeline slug.
+      # @return [Sawyer::Resource] Hash representing Buildkite pipeline
+      # @see https://buildkite.com/docs/api/pipelines#update-a-pipeline
+      # @example
+      #   Buildkit.update_pipeline('my-great-org', 'great-pipeline', {
+      #     name: 'My pipeline 2',
+      #   })
+      #
+      def update_pipeline(org, pipeline, options = {})
+        patch("/v2/organizations/#{org}/pipelines/#{pipeline}", options)
+      end
     end
   end
 end

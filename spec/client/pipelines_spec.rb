@@ -44,4 +44,17 @@ describe Buildkit::Client::Pipelines do
       end
     end
   end
+
+  context '#update_pipeline' do
+    it 'update the pipeline' do
+      VCR.use_cassette 'update_pipeline' do
+        pipeline_params = {
+          name: 'My pipeline 2',
+        }
+        pipeline = client.update_pipeline('shopify', 'my-pipeline', pipeline_params)
+        expect(pipeline.name).to be == 'My pipeline 2'
+        expect(pipeline.slug).to be == 'my-pipeline-2'
+      end
+    end
+  end
 end
