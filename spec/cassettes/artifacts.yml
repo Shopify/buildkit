@@ -1,0 +1,106 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-branches/builds/219190/artifacts?per_page=2
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Buildkit v1.0.0
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <<ACCESS_TOKEN>>
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      date:
+      - Thu, 12 Jan 2017 20:21:50 GMT
+      content-type:
+      - application/json; charset=utf-8
+      transfer-encoding:
+      - chunked
+      connection:
+      - close
+      server:
+      - nginx
+      x-frame-options:
+      - SAMEORIGIN, SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff, nosniff
+      access-control-allow-origin:
+      - "*"
+      access-control-expose-headers:
+      - Link
+      rate-limit-remaining:
+      - '99'
+      rate-limit-limit:
+      - '100'
+      rate-limit-reset:
+      - '10'
+      x-accepted-oauth-scopes:
+      - read_artifacts
+      link:
+      - <https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-branches/builds/219190/artifacts?page=2&per_page=2>;
+        rel="next", <https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-branches/builds/219190/artifacts?page=155&per_page=2>;
+        rel="last"
+      x-oauth-scopes:
+      - read_artifacts,read_builds,read_pipelines
+      etag:
+      - W/"6be063f0a9b79dc3b77a067abca1d700"
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 037a230b-43a1-41b7-9dea-120b87d50f16
+      x-runtime:
+      - '0.045727'
+      strict-transport-security:
+      - max-age=31536000; includeSubdomains; preload
+      x-ua-compatible:
+      - chrome=1
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        [
+          {
+            "id": "2d46bfa3-04d2-4d90-8762-b53366055561",
+            "job_id": "568b1517-c863-44e1-82b7-18a003449d59",
+            "url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-branches/builds/219190/jobs/568b1517-c863-44e1-82b7-18a003449d59/artifacts/2d46bfa3-04d2-4d90-8762-b53366055561",
+            "download_url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-branches/builds/219190/jobs/568b1517-c863-44e1-82b7-18a003449d59/artifacts/2d46bfa3-04d2-4d90-8762-b53366055561/download",
+            "state": "finished",
+            "path": "lhm.log",
+            "dirname": ".",
+            "filename": "lhm.log",
+            "mime_type": "text/plain",
+            "file_size": 67,
+            "glob_path": "./**/*",
+            "original_path": "/tmp/buildkite-artifacts-20170112-23030-1bhvcb8/lhm.log",
+            "sha1sum": "94eb134b9d1ed0618504b4a9569e99e6913ab196"
+          },
+          {
+            "id": "54ec2688-dc1c-42b0-86f1-5453304be44d",
+            "job_id": "568b1517-c863-44e1-82b7-18a003449d59",
+            "url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-branches/builds/219190/jobs/568b1517-c863-44e1-82b7-18a003449d59/artifacts/54ec2688-dc1c-42b0-86f1-5453304be44d",
+            "download_url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-branches/builds/219190/jobs/568b1517-c863-44e1-82b7-18a003449d59/artifacts/54ec2688-dc1c-42b0-86f1-5453304be44d/download",
+            "state": "finished",
+            "path": "test.log",
+            "dirname": ".",
+            "filename": "test.log",
+            "mime_type": "text/plain",
+            "file_size": 6923661,
+            "glob_path": "./**/*",
+            "original_path": "/tmp/buildkite-artifacts-20170112-23030-1bhvcb8/test.log",
+            "sha1sum": "9299969df6f3f710117cd575a7d9bd2327b81185"
+          }
+        ]
+    http_version: 
+  recorded_at: Thu, 12 Jan 2017 20:21:50 GMT
+recorded_with: VCR 2.9.3
