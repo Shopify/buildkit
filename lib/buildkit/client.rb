@@ -4,6 +4,7 @@ require 'buildkit/client/builds'
 require 'buildkit/client/organizations'
 require 'buildkit/client/pipelines'
 require 'buildkit/client/jobs'
+require 'buildkit/client/artifacts'
 require 'buildkit/response/raise_error'
 
 module Buildkit
@@ -13,6 +14,7 @@ module Buildkit
     include Organizations
     include Pipelines
     include Jobs
+    include Artifacts
 
     DEFAULT_ENDPOINT = 'https://api.buildkite.com/v2/'.freeze
 
