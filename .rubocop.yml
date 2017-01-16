@@ -9,6 +9,9 @@ Metrics/LineLength:
 Metrics/MethodLength:
   Max: 25
 
+Metrics/BlockLength:
+  Enabled: false # RSpec ... :facepalm:
+
 Metrics/AbcSize:
   Max: 30
 
