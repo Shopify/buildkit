@@ -1,0 +1,191 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-borgified/builds/68/cancel
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      User-Agent:
+      - Buildkit v1.1.1
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <<ACCESS_TOKEN>>
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      date:
+      - Fri, 24 Feb 2017 11:33:25 GMT
+      content-type:
+      - application/json; charset=utf-8
+      transfer-encoding:
+      - chunked
+      connection:
+      - close
+      server:
+      - nginx
+      x-frame-options:
+      - SAMEORIGIN, SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff, nosniff
+      access-control-allow-origin:
+      - "*"
+      access-control-expose-headers:
+      - Link
+      rate-limit-remaining:
+      - '99'
+      rate-limit-limit:
+      - '100'
+      rate-limit-reset:
+      - '35'
+      x-accepted-oauth-scopes:
+      - write_builds
+      x-oauth-scopes:
+      - read_agents,read_artifacts,read_builds,write_builds,read_job_env,read_build_logs,read_organizations,read_pipelines,write_pipelines,read_user
+      etag:
+      - W/"e5ea7c8873a7c8b01a7e39810eb7ecb7"
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 63443e20-9182-4dd6-96dc-8cb840f88ca0
+      x-runtime:
+      - '0.580521'
+      strict-transport-security:
+      - max-age=31536000; includeSubdomains; preload
+      x-ua-compatible:
+      - chrome=1
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "edbef4c1-67bf-4ea4-ac2a-83a60be1db07",
+          "url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-borgified/builds/68",
+          "web_url": "https://buildkite.com/shopify/shopify-borgified/builds/68",
+          "number": 4,
+          "state": "canceling",
+          "message": "4",
+          "commit": "c69bbbfeeace709adc35562eddd3620d83245336",
+          "branch": "master",
+          "tag": null,
+          "env": {
+
+          },
+          "source": "ui",
+          "creator": {
+            "id": "2a73625b-9827-47dc-9c7b-dabbc5bb0b82",
+            "name": "Some Coder",
+            "email": "email@example.com",
+            "created_at": "2017-01-12T02:56:33.713Z"
+          },
+          "created_at": "2017-02-24T11:30:33.422Z",
+          "scheduled_at": "2017-02-24T11:30:33.420Z",
+          "started_at": "2017-02-24T11:30:38.000Z",
+          "finished_at": null,
+          "meta_data": {
+            "buildkite:git:branch": "* (HEAD detached at FETCH_HEAD)\n  master",
+            "buildkite:git:commit": "commit c69bbbfeeace709adc35562eddd3620d83245336\nMerge: a6b9d55 b9ee438\nAuthor:     Anonymous <anonymous@example.com>\nAuthorDate: Fri Feb 24 10:57:12 2017 +0000\nCommit:     Anonymous <anonymous@example.com>\nCommitDate: Fri Feb 24 10:57:12 2017 +0000\n\n    Merge pull request #1 from repo/feature-1\n    \n    number 1\n"
+          },
+          "pull_request": null,
+          "pipeline": {
+            "id": "3ae624bc-48bb-474b-ab72-dce54da6570e",
+            "url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-borgified",
+            "web_url": "https://buildkite.com/shopify/shopify-borgified",
+            "name": "shopify-borgified",
+            "slug": "shopify-borgified",
+            "repository": "git@github.com:namespace/junk.git",
+            "branch_configuration": null,
+            "provider": {
+              "id": "github",
+              "settings": {
+                "trigger_mode": "none",
+                "build_pull_requests": true,
+                "pull_request_branch_filter_enabled": false,
+                "skip_pull_request_builds_for_existing_commits": true,
+                "build_pull_request_forks": false,
+                "build_tags": false,
+                "publish_commit_status": true,
+                "publish_commit_status_per_step": false,
+                "repository": "namespace/junk",
+                "pull_request_branch_filter_configuration": ""
+              },
+              "webhook_url": "https://webhook.buildkite.com/deliver/47827c2a5e6a08380d71c9e19b50e6ef90028e7bdb40cdc09f"
+            },
+            "builds_url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-borgified/builds",
+            "badge_url": "https://badge.buildkite.com/3efa4e699b7189656daa4a76e774e6aa49702a2c73d6eda67b.svg",
+            "created_at": "2017-02-24T11:18:08.820Z",
+            "steps": [
+              {
+                "type": "script",
+                "name": "",
+                "command": "sleep 1800",
+                "artifact_paths": "",
+                "branch_configuration": "",
+                "env": {
+
+                },
+                "timeout_in_minutes": null,
+                "concurrency": null,
+                "parallelism": null
+              }
+            ],
+            "scheduled_builds_count": 0,
+            "running_builds_count": 1,
+            "scheduled_jobs_count": 0,
+            "running_jobs_count": 1,
+            "waiting_jobs_count": 0
+          },
+          "jobs": [
+            {
+              "id": "a9e7b0c1-c5d1-44c8-93a2-40abae0801b7",
+              "type": "script",
+              "name": "",
+              "state": "canceling",
+              "build_url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-borgified/builds/68",
+              "web_url": "https://buildkite.com/shopify/shopify-borgified/builds/68#a9e7b0c1-c5d1-44c8-93a2-40abae0801b7",
+              "log_url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-borgified/builds/68/jobs/a9e7b0c1-c5d1-44c8-93a2-40abae0801b7/log",
+              "raw_log_url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-borgified/builds/68/jobs/a9e7b0c1-c5d1-44c8-93a2-40abae0801b7/log.txt",
+              "artifacts_url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-borgified/builds/68/jobs/a9e7b0c1-c5d1-44c8-93a2-40abae0801b7/artifacts",
+              "command": "sleep 1800",
+              "exit_status": null,
+              "artifact_paths": "",
+              "agent": {
+                "id": "5081db02-2568-40cf-aad8-231a31d4ba3f",
+                "url": "https://api.buildkite.com/v2/organizations/shopify/agents/5081db02-2568-40cf-aad8-231a31d4ba3f",
+                "web_url": "https://buildkite.com/organizations/shopify/agents/5081db02-2568-40cf-aad8-231a31d4ba3f",
+                "name": "scheduler-10.232.7.1",
+                "connection_state": "connected",
+                "ip_address": "127.0.0.1",
+                "access_token": "<<AGENT_ACCESS_TOKEN>>",
+                "hostname": "scheduler-2717ba0b-1088166107",
+                "user_agent": "buildkite-agent/3.0-beta.16.1412 (linux; amd64)",
+                "version": "3.0-beta.16",
+                "creator": null,
+                "created_at": "2017-02-15T04:32:45.927Z",
+                "job": null,
+                "last_job_finished_at": "2017-02-24T08:39:30.000Z",
+                "priority": 0,
+                "meta_data": [
+                  "guest_ip=10.232.7.1",
+                  "host_ip=10.88.166.107",
+                  "revision=2717ba0b"
+                ]
+              },
+              "created_at": "2017-02-24T11:30:33.459Z",
+              "scheduled_at": "2017-02-24T11:30:33.428Z",
+              "started_at": "2017-02-24T11:30:38.000Z",
+              "finished_at": null,
+              "retries_count": null
+            }
+          ]
+        }
+    http_version: 
+  recorded_at: Fri, 24 Feb 2017 11:33:25 GMT
+recorded_with: VCR 3.0.3
