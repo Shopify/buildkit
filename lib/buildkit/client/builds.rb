@@ -81,6 +81,18 @@ module Buildkit
       def create_build(org, pipeline, options = {})
         post("/v2/organizations/#{org}/pipelines/#{pipeline}/builds", options)
       end
+
+      # Cancel a build
+      #
+      # @param org [String] Organization slug.
+      # @param pipeline [String] pipeline slug.
+      # @param number [Integer] Build number.
+      # @see https://buildkite.com/docs/rest-api/builds#cancel-a-build
+      # @example
+      #   Buildkit.cancel_build('my-great-org', 'great-pipeline', 42)
+      def cancel_build(org, pipeline, number, options = {})
+        put("/v2/organizations/#{org}/pipelines/#{pipeline}/builds/#{number}/cancel", options)
+      end
     end
   end
 end

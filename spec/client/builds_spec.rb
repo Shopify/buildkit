@@ -77,4 +77,13 @@ describe Buildkit::Client::Builds do
       end
     end
   end
+
+  context '#cancel' do
+    it 'cancels the build' do
+      VCR.use_cassette 'cancel_build' do
+        build = client.cancel_build('shopify', 'shopify-borgified', 68)
+        expect(build.state).to be == 'canceling'
+      end
+    end
+  end
 end
