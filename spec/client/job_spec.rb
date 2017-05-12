@@ -20,4 +20,14 @@ describe Buildkit::Client::Jobs do
       end
     end
   end
+
+  context '#job_logs' do
+    it 'get the log output of the job' do
+      VCR.use_cassette 'job_log' do
+        job = client.job_log('shopify', 'shopify-branches', 191_425, '7372c88b-320d-4a2e-bdf8-6e2fc9259fbe')
+        expect(job.content).to be == 'log entry content'
+        expect(job.size).to be == 17
+      end
+    end
+  end
 end

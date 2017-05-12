@@ -1,0 +1,61 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-branches/builds/191425/jobs/7372c88b-320d-4a2e-bdf8-6e2fc9259fbe/log
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Buildkit v1.2.0
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <<ACCESS_TOKEN>>
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      date:
+      - Fri, 12 May 2017 21:09:38 GMT
+      content-type:
+      - application/json; charset=utf-8
+      transfer-encoding:
+      - chunked
+      connection:
+      - close
+      server:
+      - nginx
+      x-frame-options:
+      - SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff
+      access-control-allow-origin:
+      - "*"
+      access-control-expose-headers:
+      - Link
+      www-authenticate:
+      - Basic realm="api.buildkite.com"
+      cache-control:
+      - no-cache
+      x-request-id:
+      - d661996a-0f88-41db-a338-3e09f0158e55
+      x-runtime:
+      - '0.009931'
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-branches/builds/191425/jobs/7372c88b-320d-4a2e-bdf8-6e2fc9259fbe/log",
+          "content": "log entry content",
+          "size": 17
+        }
+    http_version:
+  recorded_at: Fri, 12 May 2017 21:09:36 GMT
+recorded_with: VCR 3.0.3
