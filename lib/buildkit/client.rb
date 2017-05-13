@@ -19,7 +19,7 @@ module Buildkit
     DEFAULT_ENDPOINT = 'https://api.buildkite.com/v2/'.freeze
 
     # Header keys that can be passed in options hash to {#get},{#head}
-    CONVENIENCE_HEADERS = Set.new([:accept, :content_type])
+    CONVENIENCE_HEADERS = Set.new(%i[accept content_type])
 
     # In Faraday 0.9, Faraday::Builder was renamed to Faraday::RackBuilder
     RACK_BUILDER_CLASS = defined?(Faraday::RackBuilder) ? Faraday::RackBuilder : Faraday::Builder

@@ -21,7 +21,7 @@ describe Buildkit::Client::Organizations do
         expect(organization.name).to be == 'Shopify'
         expect(organization.slug).to be == 'shopify'
 
-        expect(organization.rels.keys).to be == %i(self web pipelines agents emojis)
+        expect(organization.rels.keys).to be == %i[self web pipelines agents emojis]
       end
     end
   end

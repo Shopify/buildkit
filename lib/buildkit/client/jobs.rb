@@ -41,7 +41,7 @@ module Buildkit
       # @return [Sawyer::Resource] Hash representing the Buildkit job log output.
       # @see https://buildkite.com/docs/rest-api/jobs#get-a-jobs-log-output
       # @example
-      #   Buildkit.job_logs('my-great-org', 'great-pipeline', 123, 'my-job-id')
+      #   Buildkit.job_log('my-great-org', 'great-pipeline', 123, 'my-job-id')
       def job_log(org, pipeline, build, job, options = {})
         get("/v2/organizations/#{org}/pipelines/#{pipeline}/builds/#{build}/jobs/#{job}/log", options)
       end
