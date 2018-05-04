@@ -136,6 +136,18 @@ module Buildkit
       }
     end
 
+    def parse_link_header(link_header)
+      return unless link_header
+      links = {}
+      link_header.split(',').each do |link|
+        section = link.split(';')
+        url = section[0][/<(.+)>/, 1]
+        name = section[1][/rel="(.*)"/,1].to_sym
+        links[name] = url
+      end
+      links
+    end
+
     def parse_query_and_convenience_headers(options)
       headers = options.fetch(:headers, {})
       CONVENIENCE_HEADERS.each do |h|
