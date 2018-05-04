@@ -115,9 +115,20 @@ module Buildkit
           options[:headers][:accept] = accept
         end
       end
-
-      @last_response = response = sawyer_agent.call(method, URI::DEFAULT_PARSER.escape(path.to_s), data, options)
-      response.data
+      response = []
+      loop do
+        puts "[*] requesting #{path}"
+        res = sawyer_agent.call(method, URI::Parser.new.escape(path.to_s), data, options)
+        res.data.each { |r| response << r }
+        next_page = parse_link_header(res.headers[:link])[:next]
+        if next_page.nil?
+          @last_response = res
+          break
+        end
+        next_page_uri = URI(next_page)
+        path = "#{next_page_uri.path}?#{next_page_uri.query}"
+      end
+      response
     end
 
     def sawyer_agent
