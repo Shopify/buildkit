@@ -48,7 +48,7 @@ module Buildkit
     # @param options [Hash] Query and header params for request
     # @return [Sawyer::Resource]
     def get(url, options = {})
-      if options[:all_pages]
+      if options.delete(:all_pages)
         request_all_pages :get, url, parse_query_and_convenience_headers(options)
       else
         request(:get, url, parse_query_and_convenience_headers(options)).data
@@ -100,7 +100,6 @@ module Buildkit
       request(:head, url, parse_query_and_convenience_headers(options)).data
     end
 
-
     # Fetch the root resource for the API
     #
     # @return [Sawyer::Resource]
@@ -123,9 +122,9 @@ module Buildkit
     end
 
     def extract_query_and_headers_from(data)
-      options = {
+      {
         query: data.delete(:query) || {},
-        headers: data.delete(:headers) || {}
+        headers: data.delete(:headers) || {},
       }
     end
 
@@ -136,12 +135,12 @@ module Buildkit
         link_header = parse_link_header(res.headers[:link])
         res.data.each { |r| response << r }
         break if link_header.nil? || link_header[:next].nil?
-        path = next_page(link_header[:next], res) if link_header[:next]
+        path = next_page(link_header[:next]) if link_header[:next]
       end
       response
     end
 
-    def next_page(next_page, res)
+    def next_page(next_page)
       return build_path URI(next_page) unless next_page.nil?
       nil
     end
@@ -170,7 +169,7 @@ module Buildkit
       return unless link_header
       links = {}
       link_header.split(',').each do |link|
-        links = links.merge(parse_link link)
+        links = links.merge(parse_link(link))
       end
       links
     end
