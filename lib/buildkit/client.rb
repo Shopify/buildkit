@@ -48,7 +48,11 @@ module Buildkit
     # @param options [Hash] Query and header params for request
     # @return [Sawyer::Resource]
     def get(url, options = {})
-      request :get, url, parse_query_and_convenience_headers(options)
+      if options[:all_pages]
+        request_all_pages :get, url, parse_query_and_convenience_headers(options)
+      else
+        request(:get, url, parse_query_and_convenience_headers(options)).data
+      end
     end
 
     # Make a HTTP POST request
@@ -57,7 +61,7 @@ module Buildkit
     # @param options [Hash] Body and header params for request
     # @return [Sawyer::Resource]
     def post(url, options = {})
-      request :post, url, options
+      request(:post, url, options).data
     end
 
     # Make a HTTP PUT request
@@ -66,7 +70,7 @@ module Buildkit
     # @param options [Hash] Body and header params for request
     # @return [Sawyer::Resource]
     def put(url, options = {})
-      request :put, url, options
+      request(:put, url, options).data
     end
 
     # Make a HTTP PATCH request
@@ -75,7 +79,7 @@ module Buildkit
     # @param options [Hash] Body and header params for request
     # @return [Sawyer::Resource]
     def patch(url, options = {})
-      request :patch, url, options
+      request(:patch, url, options).data
     end
 
     # Make a HTTP DELETE request
@@ -84,7 +88,7 @@ module Buildkit
     # @param options [Hash] Query and header params for request
     # @return [Sawyer::Resource]
     def delete(url, options = {})
-      request :delete, url, options
+      request(:delete, url, options).data
     end
 
     # Make a HTTP HEAD request
@@ -93,10 +97,9 @@ module Buildkit
     # @param options [Hash] Query and header params for request
     # @return [Sawyer::Resource]
     def head(url, options = {})
-      request :head, url, parse_query_and_convenience_headers(options)
+      request(:head, url, parse_query_and_convenience_headers(options)).data
     end
 
-    attr_reader :last_response
 
     # Fetch the root resource for the API
     #
@@ -109,26 +112,42 @@ module Buildkit
 
     def request(method, path, data, options = {})
       if data.is_a?(Hash)
-        options[:query]   = data.delete(:query) || {}
-        options[:headers] = data.delete(:headers) || {}
+        options = extract_query_and_headers_from data
         if accept = data.delete(:accept)
           options[:headers][:accept] = accept
         end
       end
+
+      response = sawyer_agent.call(method, URI::Parser.new.escape(path.to_s), data, options)
+      response
+    end
+
+    def extract_query_and_headers_from(data)
+      options = {
+        query: data.delete(:query) || {},
+        headers: data.delete(:headers) || {}
+      }
+    end
+
+    def request_all_pages(method, path, data, options = {})
       response = []
       loop do
-        puts "[*] requesting #{path}"
-        res = sawyer_agent.call(method, URI::Parser.new.escape(path.to_s), data, options)
+        res = request(method, path, data, options)
+        link_header = parse_link_header(res.headers[:link])
         res.data.each { |r| response << r }
-        next_page = parse_link_header(res.headers[:link])[:next]
-        if next_page.nil?
-          @last_response = res
-          break
-        end
-        next_page_uri = URI(next_page)
-        path = "#{next_page_uri.path}?#{next_page_uri.query}"
+        break if link_header.nil? || link_header[:next].nil?
+        path = next_page(link_header[:next], res) if link_header[:next]
       end
       response
+    end
+
+    def next_page(next_page, res)
+      return build_path URI(next_page) unless next_page.nil?
+      nil
+    end
+
+    def build_path(uri)
+      "#{uri.path}?#{uri.query}"
     end
 
     def sawyer_agent
@@ -151,12 +170,24 @@ module Buildkit
       return unless link_header
       links = {}
       link_header.split(',').each do |link|
-        section = link.split(';')
-        url = section[0][/<(.+)>/, 1]
-        name = section[1][/rel="(.*)"/,1].to_sym
-        links[name] = url
+        links = links.merge(parse_link link)
       end
       links
+    end
+
+    def parse_link(link)
+      section = link.split(';')
+      url = parse_url section[0]
+      name = parse_url_name section[1]
+      {name => url}
+    end
+
+    def parse_url(url)
+      url[/<(.+)>/, 1]
+    end
+
+    def parse_url_name(name)
+      name[/rel="(.*)"/, 1].to_sym
     end
 
     def parse_query_and_convenience_headers(options)
