@@ -12,9 +12,11 @@ describe Buildkit::Client::Pipelines do
       end
     end
 
-    it 'returns all pipelines if all_pages is true' do
+    it 'returns all pipelines if auto_paginate is true' do
       VCR.use_cassette 'pipelines' do
-        pipelines = client.pipelines('shopify', all_pages: true)
+        client.auto_paginate = true
+
+        pipelines = client.pipelines('shopify')
         expect(pipelines.size).to be == 3
 
         pipeline = pipelines.first
@@ -25,9 +27,8 @@ describe Buildkit::Client::Pipelines do
       end
     end
 
-    it 'returns first page if all_pages is false' do
+    it 'returns first page if auto_paginate is false' do
       VCR.use_cassette 'pipelines' do
-
         pipelines = client.pipelines('shopify')
         expect(pipelines.size).to be == 2
 

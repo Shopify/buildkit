@@ -6,6 +6,7 @@ require 'buildkit/client/pipelines'
 require 'buildkit/client/jobs'
 require 'buildkit/client/artifacts'
 require 'buildkit/response/raise_error'
+require 'buildkit/header_link_parser'
 
 module Buildkit
   class Client
@@ -15,6 +16,7 @@ module Buildkit
     include Pipelines
     include Jobs
     include Artifacts
+    include HeaderLinkParser
 
     DEFAULT_ENDPOINT = 'https://api.buildkite.com/v2/'.freeze
 
@@ -23,6 +25,8 @@ module Buildkit
 
     # In Faraday 0.9, Faraday::Builder was renamed to Faraday::RackBuilder
     RACK_BUILDER_CLASS = defined?(Faraday::RackBuilder) ? Faraday::RackBuilder : Faraday::Builder
+
+    attr_accessor :auto_paginate
 
     class << self
       def build_middleware
@@ -36,10 +40,11 @@ module Buildkit
 
     def initialize(endpoint: ENV.fetch('BUILDKITE_API_ENDPOINT', DEFAULT_ENDPOINT),
                    token: ENV.fetch('BUILDKITE_API_TOKEN'),
-                   middleware: self.class.build_middleware)
+                   middleware: self.class.build_middleware, auto_paginate: false)
       @middleware = middleware
       @endpoint = endpoint
       @token = token
+      @auto_paginate = auto_paginate
     end
 
     # Make a HTTP GET request
@@ -48,10 +53,10 @@ module Buildkit
     # @param options [Hash] Query and header params for request
     # @return [Sawyer::Resource]
     def get(url, options = {})
-      if options.delete(:all_pages)
-        request_all_pages :get, url, parse_query_and_convenience_headers(options)
+      if @auto_paginate
+        paginate :get, url, parse_query_and_convenience_headers(options)
       else
-        request(:get, url, parse_query_and_convenience_headers(options)).data
+        request :get, url, parse_query_and_convenience_headers(options)
       end
     end
 
@@ -61,7 +66,7 @@ module Buildkit
     # @param options [Hash] Body and header params for request
     # @return [Sawyer::Resource]
     def post(url, options = {})
-      request(:post, url, options).data
+      request :post, url, options
     end
 
     # Make a HTTP PUT request
@@ -70,7 +75,7 @@ module Buildkit
     # @param options [Hash] Body and header params for request
     # @return [Sawyer::Resource]
     def put(url, options = {})
-      request(:put, url, options).data
+      request :put, url, options
     end
 
     # Make a HTTP PATCH request
@@ -79,7 +84,7 @@ module Buildkit
     # @param options [Hash] Body and header params for request
     # @return [Sawyer::Resource]
     def patch(url, options = {})
-      request(:patch, url, options).data
+      request :patch, url, options
     end
 
     # Make a HTTP DELETE request
@@ -88,7 +93,7 @@ module Buildkit
     # @param options [Hash] Query and header params for request
     # @return [Sawyer::Resource]
     def delete(url, options = {})
-      request(:delete, url, options).data
+      request :delete, url, options
     end
 
     # Make a HTTP HEAD request
@@ -97,8 +102,10 @@ module Buildkit
     # @param options [Hash] Query and header params for request
     # @return [Sawyer::Resource]
     def head(url, options = {})
-      request(:head, url, parse_query_and_convenience_headers(options)).data
+      request :head, url, parse_query_and_convenience_headers(options)
     end
+
+    attr_reader :last_response
 
     # Fetch the root resource for the API
     #
@@ -117,8 +124,8 @@ module Buildkit
         end
       end
 
-      response = sawyer_agent.call(method, URI::Parser.new.escape(path.to_s), data, options)
-      response
+      @last_response = response = sawyer_agent.call(method, URI::DEFAULT_PARSER.escape(path.to_s), data, options)
+      response.data
     end
 
     def extract_query_and_headers_from(data)
@@ -128,12 +135,12 @@ module Buildkit
       }
     end
 
-    def request_all_pages(method, path, data, options = {})
+    def paginate(method, path, data, options = {})
       response = []
       loop do
-        res = request(method, path, data, options)
-        link_header = parse_link_header(res.headers[:link])
-        res.data.each { |r| response << r }
+        request method, path, data, options
+        link_header = parse_link_header(@last_response.headers[:link])
+        @last_response.data.each { |r| response << r }
         break if link_header.nil? || link_header[:next].nil?
         path = next_page(link_header[:next]) if link_header[:next]
       end
@@ -163,30 +170,6 @@ module Buildkit
         links_parser: Sawyer::LinkParsers::Simple.new,
         faraday: Faraday.new(builder: @middleware),
       }
-    end
-
-    def parse_link_header(link_header)
-      return unless link_header
-      links = {}
-      link_header.split(',').each do |link|
-        links = links.merge(parse_link(link))
-      end
-      links
-    end
-
-    def parse_link(link)
-      section = link.split(';')
-      url = parse_url section[0]
-      name = parse_url_name section[1]
-      {name => url}
-    end
-
-    def parse_url(url)
-      url[/<(.+)>/, 1]
-    end
-
-    def parse_url_name(name)
-      name[/rel="(.*)"/, 1].to_sym
     end
 
     def parse_query_and_convenience_headers(options)
