@@ -116,12 +116,12 @@ module Buildkit
         end
       end
 
-      @last_response = response = sawyer_agent.call(method, URI::Parser.new.escape(path.to_s), data, options)
+      @last_response = response = sawyer_agent.call(method, URI::DEFAULT_PARSER.escape(path.to_s), data, options)
       response.data
     end
 
     def sawyer_agent
-      @agent ||= Sawyer::Agent.new(@endpoint, sawyer_options) do |http|
+      @sawyer_agent ||= Sawyer::Agent.new(@endpoint, sawyer_options) do |http|
         http.headers[:accept] = 'application/json'
         http.headers[:content_type] = 'application/json'
         http.headers[:user_agent] = "Buildkit v#{Buildkit::VERSION}"
