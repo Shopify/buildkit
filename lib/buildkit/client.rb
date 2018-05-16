@@ -139,17 +139,17 @@ module Buildkit
       response = []
       loop do
         request method, path, data, options
+        response.concat @last_response.data
+
         link_header = parse_link_header(@last_response.headers[:link])
-        @last_response.data.each { |r| response << r }
-        break if link_header.nil? || link_header[:next].nil?
-        path = next_page(link_header[:next]) if link_header[:next]
+        break if link_header[:next].nil?
+        path = next_page(link_header[:next])
       end
       response
     end
 
     def next_page(next_page)
-      return build_path URI(next_page) unless next_page.nil?
-      nil
+      build_path URI(next_page)
     end
 
     def build_path(uri)

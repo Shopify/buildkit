@@ -71,7 +71,7 @@ http_interactions:
             "repository": "git@github.com:Shopify/shopify.git",
             "provider": {
               "id": "github",
-              "webhook_url": "https://webhook.buildkite.com/deliver/597fb5587a1da3b36b7abb0050e3ad6650b514138991d7053f"
+              "webhook_url": "htpps://webhook.buildkite.com/deliver/12345abcdef"
             },
             "builds_url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-borgified/builds",
             "created_at": "2015-04-21 14:44:26 UTC",
@@ -148,7 +148,7 @@ http_interactions:
             "repository": "git@github.com:Shopify/shopify-ios-admin.git",
             "provider": {
               "id": "github",
-              "webhook_url": "https://webhook.buildkite.com/deliver/2452a4d474037955a2e9f9078985a40900d9184cdb1949639f"
+              "webhook_url": "htpps://webhook.buildkite.com/deliver/12345abcdef"
             },
             "builds_url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-for-iphone/builds",
             "created_at": "2015-04-20 20:21:41 UTC",
@@ -268,7 +268,7 @@ http_interactions:
             "repository": "git@github.com:Shopify/shopify.git",
             "provider": {
               "id": "github",
-              "webhook_url": "https://webhook.buildkite.com/deliver/597fb5587a1da3b36b7abb0050e3ad6650b514138991d7053f"
+              "webhook_url": "htpps://webhook.buildkite.com/deliver/12345abcdef"
             },
             "builds_url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-borgified/builds",
             "created_at": "2015-04-21 14:44:26 UTC",
@@ -345,7 +345,7 @@ http_interactions:
             "repository": "git@github.com:Shopify/shopify-ios-admin.git",
             "provider": {
               "id": "github",
-              "webhook_url": "https://webhook.buildkite.com/deliver/2452a4d474037955a2e9f9078985a40900d9184cdb1949639f"
+              "webhook_url": "htpps://webhook.buildkite.com/deliver/12345abcdef"
             },
             "builds_url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-for-iphone/builds",
             "created_at": "2015-04-20 20:21:41 UTC",
@@ -464,7 +464,7 @@ http_interactions:
             "repository": "git@github.com:Shopify/shopify-ios-admin.git",
             "provider": {
               "id": "github",
-              "webhook_url": "https://webhook.buildkite.com/deliver/2452a4d474037955a2e9f9078985a40900d9184cdb1949639f"
+              "webhook_url": "htpps://webhook.buildkite.com/deliver/12345abcdef"
             },
             "builds_url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-for-iphone/builds",
             "created_at": "2015-04-20 20:21:41 UTC",
