@@ -14,6 +14,15 @@ describe Buildkit do
     end
   end
 
+  describe 'client' do
+    it 'has last_response' do
+      VCR.use_cassette 'root' do
+        root = client.root
+        expect(client.last_response.data.response).to eq(root.response)
+      end
+    end
+  end
+
   describe 'errors' do
     it 'raises a Buildkit::NotFound on 404 responses' do
       VCR.use_cassette '404' do

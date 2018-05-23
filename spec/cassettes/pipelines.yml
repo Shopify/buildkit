@@ -18,7 +18,7 @@ http_interactions:
   response:
     status:
       code: 200
-      message: 
+      message:
     headers:
       server:
       - nginx/1.6.3
@@ -71,7 +71,7 @@ http_interactions:
             "repository": "git@github.com:Shopify/shopify.git",
             "provider": {
               "id": "github",
-              "webhook_url": "https://webhook.buildkite.com/deliver/597fb5587a1da3b36b7abb0050e3ad6650b514138991d7053f"
+              "webhook_url": "htpps://webhook.buildkite.com/deliver/12345abcdef"
             },
             "builds_url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-borgified/builds",
             "created_at": "2015-04-21 14:44:26 UTC",
@@ -148,7 +148,7 @@ http_interactions:
             "repository": "git@github.com:Shopify/shopify-ios-admin.git",
             "provider": {
               "id": "github",
-              "webhook_url": "https://webhook.buildkite.com/deliver/2452a4d474037955a2e9f9078985a40900d9184cdb1949639f"
+              "webhook_url": "htpps://webhook.buildkite.com/deliver/12345abcdef"
             },
             "builds_url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-for-iphone/builds",
             "created_at": "2015-04-20 20:21:41 UTC",
@@ -195,6 +195,322 @@ http_interactions:
             "running_jobs_count": 0
           }
         ]
-    http_version: 
+    http_version:
+  recorded_at: Thu, 23 Apr 2015 17:11:58 GMT
+- request:
+    method: get
+    uri: https://api.buildkite.com/v2/organizations/shopify/pipelines
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Buildkit v0.1.0
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <<ACCESS_TOKEN>>
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      server:
+      - nginx/1.6.3
+      date:
+      - Thu, 23 Apr 2015 17:11:58 GMT
+      content-type:
+      - application/json; charset=utf-8
+      transfer-encoding:
+      - chunked
+      connection:
+      - close
+      status:
+      - 200 OK
+      x-frame-options:
+      - SAMEORIGIN, SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff, nosniff
+      access-control-allow-origin:
+      - "*"
+      x-accepted-oauth-scopes:
+      - read_pipelines
+      link:
+      - <https://api.buildkite.com/v2/organizations/shopify/pipelines?page=2>;
+        rel="next", <https://api.buildkite.com/v2/organizations/shopify/pipelines?page=2>;
+        rel="last"
+      x-oauth-scopes:
+      - read_user,read_organizations,read_pipelines,write_pipelines,read_builds,write_builds,read_build_logs,read_agents,write_agents
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 3a5a6577-528b-4390-ad35-cf6819b1c6d9
+      x-runtime:
+      - '0.041574'
+      strict-transport-security:
+      - max-age=31536000; includeSubdomains
+      x-ua-compatible:
+      - chrome=1
+    body:
+      encoding: UTF-8
+      string: |
+        [
+          {
+            "id": "5c6894bc-948c-4423-b536-987fd0332912",
+            "url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-borgified",
+            "web_url": "https://buildkite.com/shopify/shopify-borgified",
+            "name": "shopify-borgified",
+            "slug": "shopify-borgified",
+            "repository": "git@github.com:Shopify/shopify.git",
+            "provider": {
+              "id": "github",
+              "webhook_url": "htpps://webhook.buildkite.com/deliver/12345abcdef"
+            },
+            "builds_url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-borgified/builds",
+            "created_at": "2015-04-21 14:44:26 UTC",
+            "steps": [
+              {
+                "type": "script",
+                "name": "wait-for-container",
+                "command": "buildkite/wait-for-container.sh",
+                "artifact_paths": "",
+                "branch_configuration": "",
+                "env": {
+                },
+                "timeout_in_minutes": 10,
+                "agent_query_rules": [
+                  "docker=1"
+                ]
+              },
+              {
+                "type": "waiter"
+              },
+              {
+                "type": "script",
+                "name": "tests-%n",
+                "command": "buildkite/run-tests.rb",
+                "artifact_paths": ".artifacts/**/*;/app/logs/**/*",
+                "branch_configuration": "",
+                "env": {
+                },
+                "timeout_in_minutes": null,
+                "agent_query_rules": [
+                  "docker=1"
+                ]
+              }
+            ],
+            "env": {
+              "RUBY_GC_MALLOC_LIMIT": "128000000",
+              "RUBY_GC_OLDMALLOC_LIMIT": "128000000",
+              "RUBY_GC_HEAP_GROWTH_FACTOR": "1.25",
+              "RUBY_GC_HEAP_GROWTH_MAX_SLOTS": "300000",
+              "RUBY_GC_HEAP_INIT_SLOTS": "600000",
+              "RUBY_GC_HEAP_FREE_SLOTS": "600000"
+            },
+            "featured_build": {
+              "id": "500713d1-8aa3-46d4-a58a-d6a795056c6d",
+              "url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-borgified/builds/68",
+              "web_url": "https://buildkite.com/shopify/shopify-borgified/builds/68",
+              "number": 68,
+              "state": "failed",
+              "message": "sudo mount -o remount,rw,noatime,nobarrier /dev/md0 /u",
+              "commit": "HEAD",
+              "branch": "bk-tar-no-compress",
+              "env": {
+              },
+              "created_at": "2015-04-23 16:55:52 UTC",
+              "scheduled_at": "2015-04-23 16:55:52 UTC",
+              "started_at": "2015-04-23 16:55:58 UTC",
+              "finished_at": "2015-04-23 17:03:21 UTC",
+              "meta_data": {
+                "buildkite:git:branch": "* master",
+                "buildkite:git:commit": "commit 98e2f4eeabbfd6c9f29ba23b2a9c74311fd8682a\nAuthor:     Anonymous <anonymous@example.com>\nAuthorDate: Thu Apr 23 11:24:38 2015 -0400\nCommit:     Anonymous <anonymous@example.com>\nCommitDate: Thu Apr 23 11:24:38 2015 -0400\n\n    More semian tickets"
+              }
+            },
+            "scheduled_builds_count": 0,
+            "running_builds_count": 0,
+            "scheduled_jobs_count": 0,
+            "running_jobs_count": 0
+          },
+          {
+            "id": "4c47bc4e-03cc-49dd-9f7f-0b7e986f77bb",
+            "url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-for-iphone",
+            "web_url": "https://buildkite.com/shopify/shopify-for-iphone",
+            "name": "Shopify for iPhone",
+            "slug": "shopify-for-iphone",
+            "repository": "git@github.com:Shopify/shopify-ios-admin.git",
+            "provider": {
+              "id": "github",
+              "webhook_url": "htpps://webhook.buildkite.com/deliver/12345abcdef"
+            },
+            "builds_url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-for-iphone/builds",
+            "created_at": "2015-04-20 20:21:41 UTC",
+            "steps": [
+              {
+                "type": "script",
+                "name": "Build and Test",
+                "command": "buildkite/develop.sh",
+                "artifact_paths": "",
+                "branch_configuration": "",
+                "env": {
+                },
+                "timeout_in_minutes": null,
+                "agent_query_rules": [
+                  "mac=true"
+                ]
+              }
+            ],
+            "env": {
+            },
+            "featured_build": {
+              "id": "00f2a763-86c8-4597-a290-2e5f55e3c3e6",
+              "url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-for-iphone/builds/39",
+              "web_url": "https://buildkite.com/shopify/shopify-for-iphone/builds/39",
+              "number": 39,
+              "state": "failed",
+              "message": "Merge pull request #1956 from Shopify/bugfix/watch-operations\n\nFixes the watch operations which stopped executing on Xcode 6.3",
+              "commit": "f800c90ffd5d89528546d724063251b2d922c298",
+              "branch": "release/4.5.1",
+              "env": {
+              },
+              "created_at": "2015-04-23 16:53:11 UTC",
+              "scheduled_at": "2015-04-23 16:53:11 UTC",
+              "started_at": "2015-04-23 16:53:16 UTC",
+              "finished_at": "2015-04-23 16:57:34 UTC",
+              "meta_data": {
+                "buildkite:git:branch": "* (detached from f73f346)",
+                "buildkite:git:commit": "commit f800c90ffd5d89528546d724063251b2d922c298\nMerge: 5fc0835 f73f346\nAuthor:     Anonymous <anonymous@example.com>\nAuthorDate: Thu Apr 23 12:53:11 2015 -0400\nCommit:     Anonymous <anonymous@example.com>\nCommitDate: Thu Apr 23 12:53:11 2015 -0400\n\n    Merge pull request #1956 from Shopify/bugfix/watch-operations\n    \n    Fixes the watch operations which stopped executing on Xcode 6.3"
+              }
+            },
+            "scheduled_builds_count": 0,
+            "running_builds_count": 0,
+            "scheduled_jobs_count": 0,
+            "running_jobs_count": 0
+          }
+        ]
+    http_version:
+  recorded_at: Thu, 23 Apr 2015 17:11:58 GMT
+- request:
+    method: get
+    uri: https://api.buildkite.com/v2/organizations/shopify/pipelines?page=2
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Buildkit v0.1.0
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <<ACCESS_TOKEN>>
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      server:
+      - nginx/1.6.3
+      date:
+      - Thu, 23 Apr 2015 17:11:58 GMT
+      content-type:
+      - application/json; charset=utf-8
+      transfer-encoding:
+      - chunked
+      connection:
+      - close
+      status:
+      - 200 OK
+      x-frame-options:
+      - SAMEORIGIN, SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff, nosniff
+      access-control-allow-origin:
+      - "*"
+      x-accepted-oauth-scopes:
+      - read_pipelines
+      link:
+      - <https://api.buildkite.com/v2/organizations/shopify/pipelines?page=2>;
+        rel="last"
+      x-oauth-scopes:
+      - read_user,read_organizations,read_pipelines,write_pipelines,read_builds,write_builds,read_build_logs,read_agents,write_agents
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - 3a5a6577-528b-4390-ad35-cf6819b1c6d9
+      x-runtime:
+      - '0.041574'
+      strict-transport-security:
+      - max-age=31536000; includeSubdomains
+      x-ua-compatible:
+      - chrome=1
+    body:
+      encoding: UTF-8
+      string: |
+        [
+          {
+            "id": "4c47bc4e-03cc-49dd-9f7f-0b7e986f77bb",
+            "url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-for-iphone",
+            "web_url": "https://buildkite.com/shopify/shopify-for-iphone",
+            "name": "pipeline from the second page",
+            "slug": "shopify-for-iphone",
+            "repository": "git@github.com:Shopify/shopify-ios-admin.git",
+            "provider": {
+              "id": "github",
+              "webhook_url": "htpps://webhook.buildkite.com/deliver/12345abcdef"
+            },
+            "builds_url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-for-iphone/builds",
+            "created_at": "2015-04-20 20:21:41 UTC",
+            "steps": [
+              {
+                "type": "script",
+                "name": "Build and Test",
+                "command": "buildkite/develop.sh",
+                "artifact_paths": "",
+                "branch_configuration": "",
+                "env": {
+                },
+                "timeout_in_minutes": null,
+                "agent_query_rules": [
+                  "mac=true"
+                ]
+              }
+            ],
+            "env": {
+            },
+            "featured_build": {
+              "id": "00f2a763-86c8-4597-a290-2e5f55e3c3e6",
+              "url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-for-iphone/builds/39",
+              "web_url": "https://buildkite.com/shopify/shopify-for-iphone/builds/39",
+              "number": 39,
+              "state": "failed",
+              "message": "Merge pull request #1956 from Shopify/bugfix/watch-operations\n\nFixes the watch operations which stopped executing on Xcode 6.3",
+              "commit": "f800c90ffd5d89528546d724063251b2d922c298",
+              "branch": "release/4.5.1",
+              "env": {
+              },
+              "created_at": "2015-04-23 16:53:11 UTC",
+              "scheduled_at": "2015-04-23 16:53:11 UTC",
+              "started_at": "2015-04-23 16:53:16 UTC",
+              "finished_at": "2015-04-23 16:57:34 UTC",
+              "meta_data": {
+                "buildkite:git:branch": "* (detached from f73f346)",
+                "buildkite:git:commit": "commit f800c90ffd5d89528546d724063251b2d922c298\nMerge: 5fc0835 f73f346\nAuthor:     Anonymous <anonymous@example.com>\nAuthorDate: Thu Apr 23 12:53:11 2015 -0400\nCommit:     Anonymous <anonymous@example.com>\nCommitDate: Thu Apr 23 12:53:11 2015 -0400\n\n    Merge pull request #1956 from Shopify/bugfix/watch-operations\n    \n    Fixes the watch operations which stopped executing on Xcode 6.3"
+              }
+            },
+            "scheduled_builds_count": 0,
+            "running_builds_count": 0,
+            "scheduled_jobs_count": 0,
+            "running_jobs_count": 0
+          }
+        ]
+    http_version:
   recorded_at: Thu, 23 Apr 2015 17:11:58 GMT
 recorded_with: VCR 2.9.3

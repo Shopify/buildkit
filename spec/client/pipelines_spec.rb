@@ -11,6 +11,34 @@ describe Buildkit::Client::Pipelines do
         expect(pipeline.name).to be == 'shopify-borgified'
       end
     end
+
+    it 'returns all pipelines if auto_paginate is true' do
+      VCR.use_cassette 'pipelines' do
+        client.auto_paginate = true
+
+        pipelines = client.pipelines('shopify')
+        expect(pipelines.size).to be == 3
+
+        pipeline = pipelines.first
+        expect(pipeline.name).to eq 'shopify-borgified'
+
+        pipeline = pipelines.last
+        expect(pipeline.name).to eq 'pipeline from the second page'
+      end
+    end
+
+    it 'returns first page if auto_paginate is false' do
+      VCR.use_cassette 'pipelines' do
+        pipelines = client.pipelines('shopify')
+        expect(pipelines.size).to be == 2
+
+        pipeline = pipelines.first
+        expect(pipeline.name).to eq 'shopify-borgified'
+
+        pipeline = pipelines.last
+        expect(pipeline.name).to eq 'Shopify for iPhone'
+      end
+    end
   end
 
   context '#pipeline' do

@@ -6,6 +6,7 @@ require 'buildkit/client/pipelines'
 require 'buildkit/client/jobs'
 require 'buildkit/client/artifacts'
 require 'buildkit/response/raise_error'
+require 'buildkit/header_link_parser'
 
 module Buildkit
   class Client
@@ -15,6 +16,7 @@ module Buildkit
     include Pipelines
     include Jobs
     include Artifacts
+    include HeaderLinkParser
 
     DEFAULT_ENDPOINT = 'https://api.buildkite.com/v2/'.freeze
 
@@ -23,6 +25,8 @@ module Buildkit
 
     # In Faraday 0.9, Faraday::Builder was renamed to Faraday::RackBuilder
     RACK_BUILDER_CLASS = defined?(Faraday::RackBuilder) ? Faraday::RackBuilder : Faraday::Builder
+
+    attr_accessor :auto_paginate
 
     class << self
       def build_middleware
@@ -36,10 +40,11 @@ module Buildkit
 
     def initialize(endpoint: ENV.fetch('BUILDKITE_API_ENDPOINT', DEFAULT_ENDPOINT),
                    token: ENV.fetch('BUILDKITE_API_TOKEN'),
-                   middleware: self.class.build_middleware)
+                   middleware: self.class.build_middleware, auto_paginate: false)
       @middleware = middleware
       @endpoint = endpoint
       @token = token
+      @auto_paginate = auto_paginate
     end
 
     # Make a HTTP GET request
@@ -48,7 +53,11 @@ module Buildkit
     # @param options [Hash] Query and header params for request
     # @return [Sawyer::Resource]
     def get(url, options = {})
-      request :get, url, parse_query_and_convenience_headers(options)
+      if @auto_paginate
+        paginate :get, url, parse_query_and_convenience_headers(options)
+      else
+        request :get, url, parse_query_and_convenience_headers(options)
+      end
     end
 
     # Make a HTTP POST request
@@ -109,8 +118,7 @@ module Buildkit
 
     def request(method, path, data, options = {})
       if data.is_a?(Hash)
-        options[:query]   = data.delete(:query) || {}
-        options[:headers] = data.delete(:headers) || {}
+        options = extract_query_and_headers_from data
         if accept = data.delete(:accept)
           options[:headers][:accept] = accept
         end
@@ -118,6 +126,34 @@ module Buildkit
 
       @last_response = response = sawyer_agent.call(method, URI::DEFAULT_PARSER.escape(path.to_s), data, options)
       response.data
+    end
+
+    def extract_query_and_headers_from(data)
+      {
+        query: data.delete(:query) || {},
+        headers: data.delete(:headers) || {},
+      }
+    end
+
+    def paginate(method, path, data, options = {})
+      response = []
+      loop do
+        request method, path, data, options
+        response.concat @last_response.data
+
+        link_header = parse_link_header(@last_response.headers[:link])
+        break if link_header[:next].nil?
+        path = next_page(link_header[:next])
+      end
+      response
+    end
+
+    def next_page(next_page)
+      build_path URI(next_page)
+    end
+
+    def build_path(uri)
+      "#{uri.path}?#{uri.query}"
     end
 
     def sawyer_agent
