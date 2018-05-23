@@ -16,8 +16,8 @@ describe Buildkit::Client::Pipelines do
   context '#pipeline' do
     it 'returns the pipeline' do
       VCR.use_cassette 'pipeline' do
-        pipeline = client.pipeline('shopify', 'shopify-borgified')
-        expect(pipeline.name).to be == 'shopify-borgified'
+        pipeline = client.pipeline('shopify', 'shipit-ci')
+        expect(pipeline.slug).to be == 'shipit-ci'
       end
     end
   end

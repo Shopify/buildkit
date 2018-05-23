@@ -2,13 +2,13 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-borgified
+    uri: https://api.buildkite.com/v2/organizations/shopify/pipelines/shipit-ci
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Buildkit v0.1.0
+      - Buildkit v1.3.0
       Accept:
       - application/json
       Content-Type:
@@ -20,120 +20,119 @@ http_interactions:
       code: 200
       message: 
     headers:
-      server:
-      - nginx/1.6.2
       date:
-      - Thu, 23 Apr 2015 17:15:29 GMT
+      - Wed, 23 May 2018 09:08:21 GMT
       content-type:
       - application/json; charset=utf-8
       transfer-encoding:
       - chunked
       connection:
       - close
-      status:
-      - 200 OK
+      server:
+      - nginx
       x-frame-options:
       - SAMEORIGIN, SAMEORIGIN
       x-xss-protection:
       - 1; mode=block
       x-content-type-options:
       - nosniff, nosniff
+      x-download-options:
+      - noopen
+      x-permitted-cross-domain-policies:
+      - none
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      access-control-allow-methods:
+      - GET, POST, PUT, DELETE, OPTIONS
       access-control-allow-origin:
       - "*"
+      access-control-expose-headers:
+      - Link, Rate-Limit-Remaining, Rate-Limit-Limit, Rate-Limit-Reset, X-OAuth-Scopes
+      rate-limit-remaining:
+      - '99'
+      rate-limit-limit:
+      - '100'
+      rate-limit-reset:
+      - '39'
       x-accepted-oauth-scopes:
       - read_pipelines
       x-oauth-scopes:
       - read_user,read_organizations,read_pipelines,write_pipelines,read_builds,write_builds,read_build_logs,read_agents,write_agents
+      etag:
+      - W/"894ec471dea633dadb96e7d0e9f0c817"
       cache-control:
       - max-age=0, private, must-revalidate
       x-request-id:
-      - 02d83a2f-8395-4f82-8670-742f6784e17b
+      - aa64dcd5-15d8-4e23-b36d-363a833f36e9
       x-runtime:
-      - '0.022903'
+      - '0.024982'
       strict-transport-security:
-      - max-age=31536000; includeSubdomains
+      - max-age=31536000; includeSubdomains; preload
       x-ua-compatible:
       - chrome=1
     body:
-      encoding: UTF-8
+      encoding: ASCII-8BIT
       string: |
         {
-          "id": "5c6894bc-948c-4423-b536-987fd0332912",
-          "url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-borgified",
-          "web_url": "https://buildkite.com/shopify/shopify-borgified",
-          "name": "shopify-borgified",
-          "slug": "shopify-borgified",
-          "repository": "git@github.com:Shopify/shopify.git",
+          "id": "81db2078-b12b-4a47-a043-f13930ec5d7a",
+          "url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shipit-ci",
+          "web_url": "https://buildkite.com/shopify/shipit-ci",
+          "name": "shipit_ci",
+          "description": "CI pipeline for shipit",
+          "slug": "shipit-ci",
+          "repository": "git@github.com:Shopify/shipit.git",
+          "branch_configuration": "",
+          "default_branch": "master",
+          "skip_queued_branch_builds": false,
+          "skip_queued_branch_builds_filter": null,
+          "cancel_running_branch_builds": false,
+          "cancel_running_branch_builds_filter": null,
           "provider": {
             "id": "github",
-            "webhook_url": "https://webhook.buildkite.com/deliver/597fb5587a1da3b36b7abb0050e3ad6650b514138991d7053f"
+            "settings": {
+              "trigger_mode": "code",
+              "build_pull_requests": true,
+              "pull_request_branch_filter_enabled": false,
+              "skip_pull_request_builds_for_existing_commits": true,
+              "build_pull_request_forks": false,
+              "prefix_pull_request_fork_branch_names": true,
+              "build_tags": false,
+              "publish_commit_status": true,
+              "publish_commit_status_per_step": false,
+              "repository": "Shopify/shipit"
+            },
+            "webhook_url": "https://webhook.buildkite.com/deliver/00000000000000000000000000000000000000000000000000"
           },
-          "builds_url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-borgified/builds",
-          "created_at": "2015-04-21 14:44:26 UTC",
-          "steps": [
-            {
-              "type": "script",
-              "name": "wait-for-container",
-              "command": "buildkite/wait-for-container.sh",
-              "artifact_paths": "",
-              "branch_configuration": "",
-              "env": {
-              },
-              "timeout_in_minutes": 10,
-              "agent_query_rules": [
-                "docker=1"
-              ]
-            },
-            {
-              "type": "waiter"
-            },
-            {
-              "type": "script",
-              "name": "tests-%n",
-              "command": "buildkite/run-tests.rb",
-              "artifact_paths": ".artifacts/**/*;/app/logs/**/*",
-              "branch_configuration": "",
-              "env": {
-              },
-              "timeout_in_minutes": null,
-              "agent_query_rules": [
-                "docker=1"
-              ]
-            }
-          ],
+          "builds_url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shipit-ci/builds",
+          "badge_url": "https://badge.buildkite.com/dbe724e64fcb2392253702a7e9732428430298ad3f25ca94c0.svg",
+          "created_at": "2018-04-19T12:33:16.336Z",
           "env": {
-            "RUBY_GC_MALLOC_LIMIT": "128000000",
-            "RUBY_GC_OLDMALLOC_LIMIT": "128000000",
-            "RUBY_GC_HEAP_GROWTH_FACTOR": "1.25",
-            "RUBY_GC_HEAP_GROWTH_MAX_SLOTS": "300000",
-            "RUBY_GC_HEAP_INIT_SLOTS": "600000",
-            "RUBY_GC_HEAP_FREE_SLOTS": "600000"
-          },
-          "featured_build": {
-            "id": "500713d1-8aa3-46d4-a58a-d6a795056c6d",
-            "url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-borgified/builds/68",
-            "web_url": "https://buildkite.com/shopify/shopify-borgified/builds/68",
-            "number": 68,
-            "state": "failed",
-            "message": "sudo mount -o remount,rw,noatime,nobarrier /dev/md0 /u",
-            "commit": "HEAD",
-            "branch": "bk-tar-no-compress",
-            "env": {
-            },
-            "created_at": "2015-04-23 16:55:52 UTC",
-            "scheduled_at": "2015-04-23 16:55:52 UTC",
-            "started_at": "2015-04-23 16:55:58 UTC",
-            "finished_at": "2015-04-23 17:03:21 UTC",
-            "meta_data": {
-              "buildkite:git:branch": "* master",
-              "buildkite:git:commit": "commit 98e2f4eeabbfd6c9f29ba23b2a9c74311fd8682a\nAuthor:     Anonymous <anonymous@example.com>\nAuthorDate: Thu Apr 23 11:24:38 2015 -0400\nCommit:     Anonymous <anonymous@example.com>\nCommitDate: Thu Apr 23 11:24:38 2015 -0400\n\n    More semian tickets"
-            }
+
           },
           "scheduled_builds_count": 0,
           "running_builds_count": 0,
           "scheduled_jobs_count": 0,
-          "running_jobs_count": 0
+          "running_jobs_count": 1,
+          "waiting_jobs_count": 0,
+          "steps": [
+            {
+              "type": "script",
+              "name": ":buildkite: Pipeline Setup",
+              "command": "configure",
+              "artifact_paths": null,
+              "branch_configuration": null,
+              "env": {
+
+              },
+              "timeout_in_minutes": null,
+              "agent_query_rules": [
+                "queue=shopify-build"
+              ],
+              "concurrency": null,
+              "parallelism": null
+            }
+          ]
         }
     http_version: 
-  recorded_at: Thu, 23 Apr 2015 17:15:28 GMT
+  recorded_at: Wed, 23 May 2018 09:08:21 GMT
 recorded_with: VCR 2.9.3
