@@ -22,6 +22,14 @@ VCR.configure do |config|
   config.filter_sensitive_data('<<ACCESS_TOKEN>>') do
     test_buildkite_token
   end
+  config.before_record do |interaction|
+    if interaction.response.body
+      interaction.response.body.gsub!(
+        %r{https://webhook\.buildkite\.com/deliver/[a-f0-9]{50}},
+        'https://webhook.buildkite.com/deliver/00000000000000000000000000000000000000000000000000',
+      )
+    end
+  end
 end
 
 $LOAD_PATH.unshift File.expand_path('../lib', __dir__)
