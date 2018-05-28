@@ -1,0 +1,114 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-master-rotoscope/builds/473/jobs/aacb3091-2d24-4016-8d57-a1187a381a5b/artifacts?per_page=2
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Buildkit v1.3.0
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <<ACCESS_TOKEN>>
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      date:
+      - Fri, 25 May 2018 05:35:18 GMT
+      content-type:
+      - application/json; charset=utf-8
+      transfer-encoding:
+      - chunked
+      connection:
+      - close
+      server:
+      - nginx
+      x-frame-options:
+      - SAMEORIGIN, SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff, nosniff
+      x-download-options:
+      - noopen
+      x-permitted-cross-domain-policies:
+      - none
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      access-control-allow-methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      access-control-allow-origin:
+      - "*"
+      access-control-expose-headers:
+      - Link, Rate-Limit-Remaining, Rate-Limit-Limit, Rate-Limit-Reset, X-OAuth-Scopes
+      rate-limit-remaining:
+      - '99'
+      rate-limit-limit:
+      - '100'
+      rate-limit-reset:
+      - '42'
+      x-accepted-oauth-scopes:
+      - read_artifacts
+      link:
+      - <https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-master-rotoscope/builds/473/jobs/aacb3091-2d24-4016-8d57-a1187a381a5b/artifacts?page=2&per_page=2>;
+        rel="next", <https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-master-rotoscope/builds/473/jobs/aacb3091-2d24-4016-8d57-a1187a381a5b/artifacts?page=3&per_page=2>;
+        rel="last"
+      x-oauth-scopes:
+      - read_artifacts,read_builds
+      etag:
+      - W/"0a77af2c2f997a463922bff9ba408aaa"
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - f3096c16-13a8-4141-9f60-c8d8b4e7fbd3
+      x-runtime:
+      - '0.042687'
+      strict-transport-security:
+      - max-age=31536000; includeSubdomains; preload
+      x-ua-compatible:
+      - chrome=1
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        [
+          {
+            "id": "edcb99ff-e26b-4d00-a6b4-77232927ba3b",
+            "job_id": "aacb3091-2d24-4016-8d57-a1187a381a5b",
+            "url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-master-rotoscope/builds/473/jobs/aacb3091-2d24-4016-8d57-a1187a381a5b/artifacts/edcb99ff-e26b-4d00-a6b4-77232927ba3b",
+            "download_url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-master-rotoscope/builds/473/jobs/aacb3091-2d24-4016-8d57-a1187a381a5b/artifacts/edcb99ff-e26b-4d00-a6b4-77232927ba3b/download",
+            "state": "finished",
+            "path": "lhm.log",
+            "dirname": ".",
+            "filename": "lhm.log",
+            "mime_type": "text/plain",
+            "file_size": 67,
+            "glob_path": "./**/*",
+            "original_path": "/tmp/aacb3091-2d24-4016-8d57-a1187a381a5b/shopify-build-artifacts-20180524-5918-6xnqqo/lhm.log",
+            "sha1sum": "aafda441229cf9e224f7d4ea000a21a3e2e9b859"
+          },
+          {
+            "id": "84ffedda-bad7-47b1-9b35-380b9f95766f",
+            "job_id": "aacb3091-2d24-4016-8d57-a1187a381a5b",
+            "url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-master-rotoscope/builds/473/jobs/aacb3091-2d24-4016-8d57-a1187a381a5b/artifacts/84ffedda-bad7-47b1-9b35-380b9f95766f",
+            "download_url": "https://api.buildkite.com/v2/organizations/shopify/pipelines/shopify-master-rotoscope/builds/473/jobs/aacb3091-2d24-4016-8d57-a1187a381a5b/artifacts/84ffedda-bad7-47b1-9b35-380b9f95766f/download",
+            "state": "finished",
+            "path": "test.log",
+            "dirname": ".",
+            "filename": "test.log",
+            "mime_type": "text/plain",
+            "file_size": 2122,
+            "glob_path": "./**/*",
+            "original_path": "/tmp/aacb3091-2d24-4016-8d57-a1187a381a5b/shopify-build-artifacts-20180524-5918-6xnqqo/test.log",
+            "sha1sum": "62912233fa7acf6c537533fc307c746a3c2849fa"
+          }
+        ]
+    http_version: 
+  recorded_at: Fri, 25 May 2018 05:35:18 GMT
+recorded_with: VCR 2.9.3
