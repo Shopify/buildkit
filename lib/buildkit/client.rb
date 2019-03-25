@@ -139,6 +139,10 @@ module Buildkit
       response = []
       loop do
         request method, path, data, options
+
+        # Paginated API calls always return Arrays.
+        return last_response.data unless @last_response.data.is_a?(Array)
+
         response.concat @last_response.data
 
         link_header = parse_link_header(@last_response.headers[:link])
