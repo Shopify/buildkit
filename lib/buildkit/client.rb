@@ -143,6 +143,7 @@ module Buildkit
 
         link_header = parse_link_header(@last_response.headers[:link])
         break if link_header[:next].nil?
+
         path = next_page(link_header[:next])
       end
       response
