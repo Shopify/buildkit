@@ -50,6 +50,17 @@ describe Buildkit::Client::Builds do
     end
   end
 
+  context '#paginated_build' do
+    it 'returns the build' do
+      VCR.use_cassette 'build' do
+        client.auto_paginate = true
+        build = client.build('shopify', 'shopify-borgified', 68)
+        expect(build.number).to be == 68
+        expect(build.state).to be == 'failed'
+      end
+    end
+  end
+
   context '#rebuild' do
     it 'rebuilds the build' do
       VCR.use_cassette 'rebuild' do
