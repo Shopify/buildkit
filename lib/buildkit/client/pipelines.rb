@@ -31,7 +31,7 @@ module Buildkit
       # @param org [String] Organization slug.
       # @see https://buildkite.com/docs/api/pipelines#create-a-pipeline
       # @example
-      #   Buildkit.create_build('my-great-org', {
+      #   Buildkit.create_pipeline('my-great-org', {
       #     name: 'My pipeline',
       #     repository: 'git@github.com:acme/pipeline.git',
       #     steps: [
