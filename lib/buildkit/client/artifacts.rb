@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Buildkit
   class Client
     # Methods for the Artifacts API

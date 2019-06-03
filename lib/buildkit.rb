@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'buildkit/version'
 require 'buildkit/client'
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'vcr'
 
 module AgentsAccessTokenFilter
@@ -23,12 +25,10 @@ VCR.configure do |config|
     test_buildkite_token
   end
   config.before_record do |interaction|
-    if interaction.response.body
-      interaction.response.body.gsub!(
-        %r{https://webhook\.buildkite\.com/deliver/[a-f0-9]{50}},
-        'https://webhook.buildkite.com/deliver/00000000000000000000000000000000000000000000000000',
-      )
-    end
+    interaction.response.body&.gsub!(
+      %r{https://webhook\.buildkite\.com/deliver/[a-f0-9]{50}},
+      'https://webhook.buildkite.com/deliver/00000000000000000000000000000000000000000000000000',
+    )
   end
 end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'sawyer'
 require 'buildkit/client/agents'
 require 'buildkit/client/builds'
@@ -18,7 +20,7 @@ module Buildkit
     include Artifacts
     include HeaderLinkParser
 
-    DEFAULT_ENDPOINT = 'https://api.buildkite.com/v2/'.freeze
+    DEFAULT_ENDPOINT = 'https://api.buildkite.com/v2/'
 
     # Header keys that can be passed in options hash to {#get},{#head}
     CONVENIENCE_HEADERS = Set.new(%i[accept content_type])
@@ -186,7 +188,7 @@ module Buildkit
       end
       query = options.delete(:query)
       opts = {query: options}
-      opts[:query].merge!(query) if query && query.is_a?(Hash)
+      opts[:query].merge!(query) if query&.is_a?(Hash)
       opts[:headers] = headers unless headers.empty?
 
       opts
