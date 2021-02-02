@@ -2,7 +2,6 @@
 
 Ruby toolkit for the Buildkite API.
 
-[![Build Status](https://secure.travis-ci.org/Shopify/buildkit.png)](http://travis-ci.org/Shopify/buildkit)
 [![Gem Version](https://badge.fury.io/rb/buildkit.png)](http://badge.fury.io/rb/buildkit)
 
 ## Installation
