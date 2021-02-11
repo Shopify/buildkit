@@ -89,26 +89,34 @@ module Buildkit
     def response_error_summary
       return nil unless data.is_a?(Hash) && !Array(data[:errors]).empty?
 
-      summary = "\nError summary:\n"
-      summary << data[:errors].map do |hash|
+      errors = data[:errors].map do |hash|
         hash.map { |k, v| "  #{k}: #{v}" }
-      end.join("\n")
+      end
 
-      summary
+      <<~MSG.chomp
+        Error summary:
+        #{errors.join("\n")}
+      MSG
     end
 
     def build_error_message
       return nil if @response.nil?
 
-      message = +"#{@response[:method].to_s.upcase} #{redact_url(@response[:url].to_s)}: #{@response[:status]} - "
-      message << "#{response_message}#{response_error}#{response_error_summary}"
-      message << " // See: #{documentation_url}" unless documentation_url.nil?
-      message
+      documentation_text = if documentation_url
+        "// See: #{documentation_url}"
+      else
+        ""
+      end
+
+      <<~MSG.strip
+        #{@response[:method].to_s.upcase} #{redact_url(@response[:url].to_s)}: #{@response[:status]} - #{response_message}#{response_error}#{response_error_summary}
+        #{documentation_text}
+      MSG
     end
 
     def redact_url(url_string)
       %w[client_secret access_token].each do |token|
-        url_string.gsub!(/#{token}=\S+/, "#{token}=(redacted)") if url_string.include? token
+        url_string = url_string.gsub(/#{token}=\S+/, "#{token}=(redacted)") if url_string.include? token
       end
       url_string
     end
