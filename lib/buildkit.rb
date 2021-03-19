@@ -4,7 +4,7 @@ require 'buildkit/version'
 require 'buildkit/client'
 
 module Buildkit
-  def self.new(*args)
-    Client.new(*args)
+  def self.new(*args, **kwargs)
+    Client.new(**kwargs)
   end
 end
