@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-if Warning.respond_to?(:[]=)
-  Warning[:deprecated] = true
-end
+Warning[:deprecated] = true if Warning.respond_to?(:[]=)
 
 require 'vcr'
 

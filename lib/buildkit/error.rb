@@ -102,11 +102,8 @@ module Buildkit
     def build_error_message
       return nil if @response.nil?
 
-      documentation_text = if documentation_url
-        "// See: #{documentation_url}"
-      else
-        ""
-      end
+      documentation_text = ''
+      documentation_text = "// See: #{documentation_url}" if documentation_url
 
       <<~MSG.strip
         #{@response[:method].to_s.upcase} #{redact_url(@response[:url].to_s)}: #{@response[:status]} - #{response_message}#{response_error}#{response_error_summary}
