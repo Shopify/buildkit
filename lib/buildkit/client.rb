@@ -160,7 +160,7 @@ module Buildkit
     end
 
     def build_path(uri)
-      "#{uri.path}?#{uri.query}"
+      CGI.unescape("#{uri.path}?#{uri.query}")
     end
 
     def sawyer_agent
