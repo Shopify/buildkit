@@ -150,7 +150,8 @@ module Buildkit
         link_header = parse_link_header(@last_response.headers[:link])
         break if link_header[:next].nil?
 
-        path = next_page(link_header[:next])
+        unescaped_next = CGI.unescape(link_header[:next])
+        path = next_page(unescaped_next)
       end
       response
     end
