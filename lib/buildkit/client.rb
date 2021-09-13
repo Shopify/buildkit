@@ -147,6 +147,7 @@ module Buildkit
 
         response.concat @last_response.data
 
+        break if @last_response.headers[:link].nil?
         link_header = parse_link_header(@last_response.headers[:link])
         break if link_header[:next].nil?
 
