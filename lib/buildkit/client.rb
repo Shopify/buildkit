@@ -170,7 +170,11 @@ module Buildkit
         http.headers[:accept] = 'application/json'
         http.headers[:content_type] = 'application/json'
         http.headers[:user_agent] = "Buildkit v#{Buildkit::VERSION}"
-        http.authorization 'Bearer', @token
+        if Gem::Version.new(Faraday::VERSION) >= Gem::Version.new("1.7.1")
+          http.request :authorization, 'Bearer', @token
+        else
+          http.authorization 'Bearer', @token
+        end
       end
     end
 
