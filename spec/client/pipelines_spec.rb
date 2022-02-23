@@ -87,4 +87,22 @@ describe Buildkit::Client::Pipelines do
       end
     end
   end
+
+  context '#archive_pipeline' do
+    it 'archives the pipeline' do
+      VCR.use_cassette 'archive_pipeline' do
+        pipeline = client.archive_pipeline('shopify', 'my-pipeline')
+        expect(pipeline.archived_at).not_to be_nil
+      end
+    end
+  end
+
+  context 'un#archive_pipeline' do
+    it 'unarchives the pipeline' do
+      VCR.use_cassette 'unarchive_pipeline' do
+        pipeline = client.unarchive_pipeline('shopify', 'my-pipeline')
+        expect(pipeline.archived_at).to be_nil
+      end
+    end
+  end
 end

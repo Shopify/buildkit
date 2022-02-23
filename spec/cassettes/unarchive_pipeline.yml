@@ -1,0 +1,84 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.buildkite.com/v2/organizations/shopify/pipelines/my-pipeline/unarchive
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      User-Agent:
+      - Buildkit v1.4.6
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <<ACCESS_TOKEN>>
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      date:
+      - Wed, 23 Feb 2022 21:52:17 GMT
+      content-type:
+      - application/json; charset=utf-8
+      transfer-encoding:
+      - chunked
+      connection:
+      - keep-alive
+      server:
+      - nginx
+      x-frame-options:
+      - SAMEORIGIN, SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff, nosniff
+      x-download-options:
+      - noopen
+      x-permitted-cross-domain-policies:
+      - none
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      access-control-allow-methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      access-control-allow-origin:
+      - "*"
+      access-control-expose-headers:
+      - Link, Rate-Limit-Remaining, Rate-Limit-Limit, Rate-Limit-Reset, X-OAuth-Scopes
+      rate-limit-remaining:
+      - '98'
+      rate-limit-limit:
+      - '100'
+      rate-limit-reset:
+      - '43'
+      x-accepted-oauth-scopes:
+      - write_pipelines
+      vary:
+      - Accept
+      x-oauth-scopes:
+      - read_pipelines,write_pipelines
+      etag:
+      - W/"3ed0f19f1ae86f2ae608886da201a538"
+      cache-control:
+      - max-age=0, private, must-revalidate
+      x-request-id:
+      - e5746185-7eaf-4544-abd8-ae208b6a5dd1
+      x-runtime:
+      - '0.160705'
+      strict-transport-security:
+      - max-age=63072000; includeSubDomains, max-age=31536000; includeSubDomains;
+        preload
+      x-ua-compatible:
+      - chrome=1
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"a74c8cf5-5dae-4395-a5e1-259e7b5e7dec","graphql_id":"UGlwZWxpbmUtLS1hNzRjOGNmNS01ZGFlLTQzOTUtYTVlMS0yNTllN2I1ZTdkZWM=","url":"https://api.buildkite.com/v2/organizations/shopify/pipelines/my-pipeline","web_url":"https://buildkite.com/shopify/my-pipeline","name":"my-pipeline","description":"","slug":"my-pipeline","repository":"git@github.com:Shopify/test-repo-pipeline.git","cluster_id":null,"branch_configuration":null,"default_branch":"master","skip_queued_branch_builds":false,"skip_queued_branch_builds_filter":null,"cancel_running_branch_builds":false,"cancel_running_branch_builds_filter":null,"allow_rebuilds":true,"provider":{"id":"github","settings":{"trigger_mode":"code","build_pull_requests":true,"pull_request_branch_filter_enabled":false,"skip_builds_for_existing_commits":true,"skip_pull_request_builds_for_existing_commits":true,"build_pull_request_ready_for_review":false,"build_pull_request_labels_changed":false,"build_pull_request_forks":false,"prefix_pull_request_fork_branch_names":true,"build_branches":true,"build_tags":false,"cancel_deleted_branch_builds":false,"publish_commit_status":true,"publish_commit_status_per_step":false,"separate_pull_request_statuses":false,"publish_blocked_as_pending":false,"use_step_key_as_commit_status":false,"filter_enabled":false,"repository":"Shopify/test-repo-pipeline"},"webhook_url":"https://webhook.buildkite.com/deliver/00000000000000000000000000000000000000000000000000"},"builds_url":"https://api.buildkite.com/v2/organizations/shopify/pipelines/my-pipeline/builds","badge_url":"https://badge.buildkite.com/ebcac7300e53fed996578fdf8df413463b6816a4b92246886a.svg","created_by":{"id":"c6050650-0935-46d2-91cd-6c347abef327","graphql_id":"VXNlci0tLWM2MDUwNjUwLTA5MzUtNDZkMi05MWNkLTZjMzQ3YWJlZjMyNw==","name":"Ivan
+        Barreto","email":"ivan.barreto@shopify.com","avatar_url":"https://www.gravatar.com/avatar/196a8ae8a82453e885bf3578017d9725","created_at":"2022-01-14T19:29:49.299Z"},"created_at":"2022-02-23T21:51:09.540Z","archived_at":null,"env":{},"scheduled_builds_count":0,"running_builds_count":0,"scheduled_jobs_count":0,"running_jobs_count":0,"waiting_jobs_count":0,"visibility":"private","tags":null,"steps":[{"type":"script","name":"","command":"","artifact_paths":"","branch_configuration":"","env":{},"timeout_in_minutes":null,"agent_query_rules":[],"concurrency":null,"parallelism":null}]}
+
+        '
+    http_version:
+  recorded_at: Wed, 23 Feb 2022 21:52:17 GMT
+recorded_with: VCR 3.0.3

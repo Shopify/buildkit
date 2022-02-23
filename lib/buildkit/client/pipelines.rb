@@ -65,6 +65,32 @@ module Buildkit
       def update_pipeline(org, pipeline, options = {})
         patch("/v2/organizations/#{org}/pipelines/#{pipeline}", options)
       end
+
+      # Archive a pipeline
+      #
+      # @param org [String] Organization slug.
+      # @param pipeline [String] pipeline slug.
+      # @return [Sawyer::Resource] Hash representing Buildkite pipeline
+      # @see https://buildkite.com/docs/api/pipelines#archive-a-pipeline
+      # @example
+      #   Buildkit.archive_pipeline('my-great-org', 'great-pipeline')
+      #
+      def archive_pipeline(org, pipeline)
+        post("/v2/organizations/#{org}/pipelines/#{pipeline}/archive")
+      end
+
+      # Unarchive a pipeline
+      #
+      # @param org [String] Organization slug.
+      # @param pipeline [String] pipeline slug.
+      # @return [Sawyer::Resource] Hash representing Buildkite pipeline
+      # @see https://buildkite.com/docs/api/pipelines#unarchive-a-pipeline
+      # @example
+      #   Buildkit.unarchive_pipeline('my-great-org', 'great-pipeline')
+      #
+      def unarchive_pipeline(org, pipeline)
+        post("/v2/organizations/#{org}/pipelines/#{pipeline}/unarchive")
+      end
     end
   end
 end
