@@ -8,7 +8,7 @@ module Buildkit
   module Response
     # This class raises an Buildkit-flavored exception based
     # HTTP status codes returned by the API
-    class RaiseError < Faraday::Response::Middleware
+    class RaiseError < Faraday::Middleware
       def on_complete(response)
         if error = Buildkit::Error.from_response(response)
           raise error
