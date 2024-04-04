@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
 
   spec.metadata['allowed_push_host'] = 'https://rubygems.org'
 
-  spec.required_ruby_version = '>= 2.3'
+  spec.required_ruby_version = '>= 2.5'
 
   spec.add_dependency 'sawyer', '>= 0.6'
   spec.add_development_dependency 'bundler'
