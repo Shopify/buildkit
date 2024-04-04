@@ -148,6 +148,7 @@ module Buildkit
         response.concat @last_response.data
 
         break if @last_response.headers[:link].nil?
+
         link_header = parse_link_header(@last_response.headers[:link])
         break if link_header[:next].nil?
 
@@ -170,7 +171,7 @@ module Buildkit
         http.headers[:accept] = 'application/json'
         http.headers[:content_type] = 'application/json'
         http.headers[:user_agent] = "Buildkit v#{Buildkit::VERSION}"
-        if Gem::Version.new(Faraday::VERSION) >= Gem::Version.new("1.7.1")
+        if Gem::Version.new(Faraday::VERSION) >= Gem::Version.new('1.7.1')
           http.request :authorization, 'Bearer', @token
         else
           http.authorization 'Bearer', @token

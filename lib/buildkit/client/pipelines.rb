@@ -91,6 +91,18 @@ module Buildkit
       def unarchive_pipeline(org, pipeline)
         post("/v2/organizations/#{org}/pipelines/#{pipeline}/unarchive")
       end
+
+      # Delete a pipeline
+      #
+      # @param org [String] Organization slug.
+      # @param pipeline [String] pipeline slug.
+      # @see https://buildkite.com/docs/apis/rest-api/pipelines#delete-a-pipeline
+      # @example
+      #   Buildkit.delete_pipeline('my-great-org', 'great-pipeline')
+      #
+      def delete_pipeline(org, pipeline)
+        delete("/v2/organizations/#{org}/pipelines/#{pipeline}")
+      end
     end
   end
 end

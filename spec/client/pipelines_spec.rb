@@ -105,4 +105,12 @@ describe Buildkit::Client::Pipelines do
       end
     end
   end
+
+  context '#delete_pipeline' do
+    it 'deletes the pipeline' do
+      VCR.use_cassette 'delete_pipeline' do
+        client.delete_pipeline('shopify', 'my-pipeline')
+      end
+    end
+  end
 end
