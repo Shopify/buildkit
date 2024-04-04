@@ -1,0 +1,73 @@
+---
+http_interactions:
+- request:
+    method: delete
+    uri: https://api.buildkite.com/v2/organizations/shopify/pipelines/my-pipeline
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      User-Agent:
+      - Buildkit v1.5.0
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <<ACCESS_TOKEN>>
+  response:
+    status:
+      code: 204
+      message:
+    headers:
+      connection:
+      - keep-alive
+      date:
+      - Thu, 04 Apr 2024 21:51:39 GMT
+      server:
+      - nginx
+      x-frame-options:
+      - SAMEORIGIN, SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff, nosniff
+      x-download-options:
+      - noopen
+      x-permitted-cross-domain-policies:
+      - none
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      access-control-allow-methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      access-control-allow-origin:
+      - "*"
+      access-control-expose-headers:
+      - Link, RateLimit-Remaining, RateLimit-Limit, RateLimit-Reset, X-OAuth-Scopes
+      ratelimit-remaining:
+      - '199'
+      ratelimit-limit:
+      - '200'
+      ratelimit-reset:
+      - '60'
+      x-accepted-oauth-scopes:
+      - write_pipelines
+      x-oauth-scopes:
+      - write_pipelines
+      cache-control:
+      - no-cache
+      x-request-id:
+      - 0e133793-dd51-4a3e-a92b-ae208b6a5dd1
+      x-runtime:
+      - '0.237821'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload, max-age=31536000; includeSubDomains;
+        preload
+      x-ua-compatible:
+      - chrome=1
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version:
+  recorded_at: Thu, 04 Apr 2024 21:51:39 GMT
+recorded_with: VCR 3.0.3
