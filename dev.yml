@@ -3,7 +3,7 @@ name: buildkit
 type: ruby
 
 up:
-  - ruby: 2.5.5
+  - ruby
   - bundler
 
 commands:
