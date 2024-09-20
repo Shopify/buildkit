@@ -32,4 +32,13 @@ describe Buildkit::Client::Jobs do
       end
     end
   end
+
+  context '#unblock' do
+    it 'unblock the job' do
+      VCR.use_cassette 'unblock a job' do
+        # job = client.unblock(...)
+        # Unblock a test job
+      end
+    end
+  end
 end
