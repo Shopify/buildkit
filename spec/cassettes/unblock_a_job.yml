@@ -1,0 +1,99 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://api.buildkite.com/v2/organizations/xenor/pipelines/demokite/builds/1/jobs/01920d5c-ecf9-479b-89de-b746318d0fbe/unblock
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      User-Agent:
+      - Buildkit v1.6.0
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer <<ACCESS_TOKEN>>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - application/json; charset=utf-8
+      transfer-encoding:
+      - chunked
+      connection:
+      - keep-alive
+      date:
+      - Fri, 20 Sep 2024 03:07:36 GMT
+      x-ua-compatible:
+      - chrome=1
+      content-encoding:
+      - gzip
+      server:
+      - nginx
+      x-frame-options:
+      - SAMEORIGIN, SAMEORIGIN
+      x-xss-protection:
+      - 1; mode=block
+      x-content-type-options:
+      - nosniff, nosniff
+      x-download-options:
+      - noopen
+      x-permitted-cross-domain-policies:
+      - none
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      access-control-allow-methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      access-control-allow-origin:
+      - "*"
+      access-control-expose-headers:
+      - Link, RateLimit-Remaining, RateLimit-Limit, RateLimit-Reset, X-OAuth-Scopes
+      ratelimit-scope:
+      - organization
+      ratelimit-remaining:
+      - '199'
+      ratelimit-limit:
+      - '200'
+      ratelimit-reset:
+      - '60'
+      x-accepted-oauth-scopes:
+      - write_builds
+      vary:
+      - Accept
+      x-oauth-scopes:
+      - read_agents,write_agents,read_clusters,write_clusters,read_teams,write_teams,read_artifacts,write_artifacts,read_builds,write_builds,read_job_env,read_build_logs,write_build_logs,read_organizations,read_pipelines,write_pipelines,read_pipeline_templates,write_pipeline_templates,read_rules,write_rules,read_user,read_suites,write_suites,read_test_plan,write_test_plan,read_registries,write_registries,delete_registries,read_packages,write_packages,delete_packages
+      etag:
+      - W/"a078ccbba1246dd4dcb44cb9ea703aa1"
+      cache-control:
+      - max-age=0, private, must-revalidate
+      content-security-policy-report-only:
+      - 'object-src ''none''; script-src ''unsafe-inline'' ''strict-dynamic'' ''report-sample''
+        https: http: ''nonce-hJDT6O5FeSGk2at7TxfyvQ==''; report-uri https://buildkite.uriports.com/reports/report'
+      x-request-id:
+      - e993e57a-972d-40ab-b971-7f5d728a0302
+      x-runtime:
+      - '0.360795'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload, max-age=31536000; includeSubDomains;
+        preload
+      x-cache:
+      - Miss from cloudfront
+      via:
+      - 1.1 ab2135f2fb6b6ca6e1fa8bb587853ca8.cloudfront.net (CloudFront)
+      x-amz-cf-pop:
+      - TPE51-C1
+      x-amz-cf-id:
+      - EB6mpWfiQIrIWZ-wjZQyT5_8FwIXTlXoPVdd6jYruWD11VrR5toK3A==
+    body:
+      encoding: UTF-8
+      string: '{"id":"01920d5c-ecf9-479b-89de-b746318d0fbe","graphql_id":"Sm9iLS0tMDE5MjBkNWMtZWNmOS00NzliLTg5ZGUtYjc0NjMxOGQwZmJl","type":"manual","label":"Block
+        Test","state":"unblocked","step_key":null,"web_url":null,"unblocked_by":{"id":"2a9d8b24-19bc-4587-bdef-078364ffcf9c","graphql_id":"VXNlci0tLTJhOWQ4YjI0LTE5YmMtNDU4Ny1iZGVmLTA3ODM2NGZmY2Y5Yw==","name":"Xenor
+        Chang","email":"wei-fun.chang@gusto.com","avatar_url":"https://www.gravatar.com/avatar/94a781404a3f17630d41bd089801a31f","created_at":"2019-09-18T20:28:31.292Z"},"unblocked_at":"2024-09-20T03:07:36.721Z","unblockable":false,"unblock_url":"https://api.buildkite.com/v2/organizations/xenor/pipelines/demokite/builds/1/jobs/01920d5c-ecf9-479b-89de-b746318d0fbe/unblock"}
+
+        '
+  recorded_at: Fri, 20 Sep 2024 03:07:36 GMT
+recorded_with: VCR 6.3.1

@@ -34,10 +34,10 @@ describe Buildkit::Client::Jobs do
   end
 
   context '#unblock' do
-    xit 'unblock the job' do
+    it 'unblock the job' do
       VCR.use_cassette 'unblock a job' do
-        # job = client.unblock(...)
-        # Unblock a test job
+        job = client.unblock('xenor', 'demokite', 1, '01920d5c-ecf9-479b-89de-b746318d0fbe')
+        expect(job.state).to be == 'unblocked'
       end
     end
   end
