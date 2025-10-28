@@ -21,6 +21,7 @@ module Buildkit
                   when 415      then Buildkit::UnsupportedMediaType
                   when 422      then Buildkit::UnprocessableEntity
                   when 400..499 then Buildkit::ClientError
+                  when 429      then Buildkit::RateLimitExceeded
                   when 500      then Buildkit::InternalServerError
                   when 501      then Buildkit::NotImplemented
                   when 502      then Buildkit::BadGateway
@@ -145,6 +146,9 @@ module Buildkit
 
   # Raised when Buildkite returns a 414 HTTP status code
   class UnsupportedMediaType < ClientError; end
+
+  # Raised when Buildkite returns a 429 HTTP status code (rate limit exceeded)
+  class RateLimitExceeded < ClientError; end
 
   # Raised when Buildkite returns a 422 HTTP status code
   class UnprocessableEntity < ClientError; end

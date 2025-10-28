@@ -42,11 +42,16 @@ module Buildkit
 
     def initialize(endpoint: ENV.fetch('BUILDKITE_API_ENDPOINT', DEFAULT_ENDPOINT),
                    token: ENV.fetch('BUILDKITE_API_TOKEN'),
-                   middleware: self.class.build_middleware, auto_paginate: false)
+                   middleware: self.class.build_middleware,
+                   auto_paginate: false,
+                   auto_retry_rate_limit: false,
+                   rate_limit_retry_count: 3)
       @middleware = middleware
       @endpoint = endpoint
       @token = token
       @auto_paginate = auto_paginate
+      @auto_retry_rate_limit = auto_retry_rate_limit
+      @rate_limit_retry_count = rate_limit_retry_count
     end
 
     # Make a HTTP GET request
@@ -119,6 +124,7 @@ module Buildkit
     private
 
     def request(method, path, data, options = {})
+      attempts = 0
       if data.is_a?(Hash)
         options = extract_query_and_headers_from data
         if accept = data.delete(:accept)
@@ -126,8 +132,20 @@ module Buildkit
         end
       end
 
-      @last_response = response = sawyer_agent.call(method, URI::DEFAULT_PARSER.escape(path.to_s), data, options)
-      response.data
+      begin
+        @last_response = response = sawyer_agent.call(method, URI::DEFAULT_PARSER.escape(path.to_s), data, options)
+        return response.data
+      rescue Buildkit::RateLimitExceeded => e
+        raise unless @auto_retry_rate_limit
+        attempts += 1
+        raise if attempts > @rate_limit_retry_count
+
+        headers = e.instance_variable_get('@response')[:response_headers]
+        wait_seconds = headers && headers[:rate_limit_reset]&.to_i
+        wait_seconds = 60 if wait_seconds.nil? || wait_seconds.zero?
+        sleep wait_seconds
+        retry
+      end
     end
 
     def extract_query_and_headers_from(data)
