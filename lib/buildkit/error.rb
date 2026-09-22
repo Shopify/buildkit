@@ -166,4 +166,7 @@ module Buildkit
 
   # Raised when client fails to provide valid Content-Type
   class MissingContentType < ArgumentError; end
+
+  # Raised when a route identifier (org, pipeline, build, job, agent id) is not a single URL path segment
+  class InvalidRouteSegment < ArgumentError; end
 end

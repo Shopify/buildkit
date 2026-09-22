@@ -26,6 +26,8 @@ organization = client.organization('my-great-org')
 agents = organization.rels[:agents].get.data
 ```
 
+Identifier arguments (`org`, `pipeline`, `build`, `job`, `id`) are interpolated into the request path, so each must be a single URL path segment: letters, digits, `-`, `_`, `.`, `~`. Values containing `/`, `?`, `%`, or that are `.`, `..`, or empty raise `Buildkit::InvalidRouteSegment` (an `ArgumentError`) before any request is made. Validate or reject user-supplied identifiers at your application boundary rather than rescuing this error.
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment.

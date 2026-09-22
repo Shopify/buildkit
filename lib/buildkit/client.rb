@@ -25,6 +25,11 @@ module Buildkit
     # Header keys that can be passed in options hash to {#get},{#head}
     CONVENIENCE_HEADERS = Set.new(%i[accept content_type])
 
+    # Characters permitted in a route identifier: RFC 3986 unreserved set.
+    # Buildkite identifiers are slugs ([a-z0-9-]), UUIDs, or integers, so this is
+    # not restrictive in practice; it rejects every path/query delimiter and `%`.
+    ROUTE_SEGMENT = /\A[A-Za-z0-9\-._~]+\z/.freeze
+
     # In Faraday 0.9, Faraday::Builder was renamed to Faraday::RackBuilder
     RACK_BUILDER_CLASS = defined?(Faraday::RackBuilder) ? Faraday::RackBuilder : Faraday::Builder
 
@@ -117,6 +122,25 @@ module Buildkit
     end
 
     private
+
+    # Validate that a caller-supplied identifier is exactly one URL path segment.
+    #
+    # Named helpers interpolate identifiers between fixed route parts; a value
+    # containing `/`, `?` or a dot-segment would otherwise re-route the request
+    # to a different Buildkite action.
+    #
+    # @param value [String, Integer]
+    # @param name [Symbol] parameter name, for the error message
+    # @return [String]
+    # @raise [Buildkit::InvalidRouteSegment]
+    def route_segment(value, name)
+      segment = value.to_s
+      if segment.match?(ROUTE_SEGMENT) && segment != '.' && segment != '..'
+        segment
+      else
+        raise InvalidRouteSegment, "#{name} must be a single URL path segment, got #{value.inspect}"
+      end
+    end
 
     def request(method, path, data, options = {})
       if data.is_a?(Hash)

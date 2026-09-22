@@ -4,6 +4,8 @@ module Buildkit
   class Client
     # Methods for the Builds API
     #
+    # Identifier arguments must be single URL path segments; see {Buildkit::InvalidRouteSegment}.
+    #
     # @see https://buildkite.com/docs/api/builds
     module Builds
       # List all builds
@@ -24,7 +26,7 @@ module Buildkit
       # @example
       #   Buildkit.organization_builds('my-great-org'))
       def organization_builds(org, options = {})
-        get("/v2/organizations/#{org}/builds", options)
+        get("/v2/organizations/#{route_segment(org, :org)}/builds", options)
       end
 
       # List builds for a pipeline
@@ -36,7 +38,7 @@ module Buildkit
       # @example
       #   Buildkit.pipeline_builds('my-great-org', 'great-pipeline')
       def pipeline_builds(org, pipeline, options = {})
-        get("/v2/organizations/#{org}/pipelines/#{pipeline}/builds", options)
+        get(builds_path(org, pipeline), options)
       end
 
       # Get a build
@@ -49,7 +51,7 @@ module Buildkit
       # @example
       #   Buildkit.build('my-great-org', 'great-pipeline', 42)
       def build(org, pipeline, number, options = {})
-        get("/v2/organizations/#{org}/pipelines/#{pipeline}/builds/#{number}", options)
+        get("#{builds_path(org, pipeline)}/#{route_segment(number, :number)}", options)
       end
 
       # Rebuild a build
@@ -61,7 +63,7 @@ module Buildkit
       # @example
       #   Buildkit.rebuild('my-great-org', 'great-pipeline', 42)
       def rebuild(org, pipeline, number, options = {})
-        put("/v2/organizations/#{org}/pipelines/#{pipeline}/builds/#{number}/rebuild", options)
+        put("#{builds_path(org, pipeline)}/#{route_segment(number, :number)}/rebuild", options)
       end
 
       # Create a build
@@ -81,7 +83,7 @@ module Buildkit
       #   })
       #
       def create_build(org, pipeline, options = {})
-        post("/v2/organizations/#{org}/pipelines/#{pipeline}/builds", options)
+        post(builds_path(org, pipeline), options)
       end
 
       # Cancel a build
@@ -93,7 +95,13 @@ module Buildkit
       # @example
       #   Buildkit.cancel_build('my-great-org', 'great-pipeline', 42)
       def cancel_build(org, pipeline, number, options = {})
-        put("/v2/organizations/#{org}/pipelines/#{pipeline}/builds/#{number}/cancel", options)
+        put("#{builds_path(org, pipeline)}/#{route_segment(number, :number)}/cancel", options)
+      end
+
+      private
+
+      def builds_path(org, pipeline)
+        "/v2/organizations/#{route_segment(org, :org)}/pipelines/#{route_segment(pipeline, :pipeline)}/builds"
       end
     end
   end

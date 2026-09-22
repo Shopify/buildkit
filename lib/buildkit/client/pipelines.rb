@@ -4,6 +4,8 @@ module Buildkit
   class Client
     # Methods for the pipelines API
     #
+    # Identifier arguments must be single URL path segments; see {Buildkit::InvalidRouteSegment}.
+    #
     # @see https://buildkite.com/docs/api/pipelines
     module Pipelines
       # List pipelines
@@ -13,7 +15,7 @@ module Buildkit
       # @example
       #   Buildkit.pipelines('my-great-org')
       def pipelines(org, options = {})
-        get("/v2/organizations/#{org}/pipelines", options)
+        get(pipelines_path(org), options)
       end
 
       # Get a pipeline
@@ -25,7 +27,7 @@ module Buildkit
       # @example
       #   Buildkit.pipeline('my-great-org', 'great-pipeline')
       def pipeline(org, pipeline, options = {})
-        get("/v2/organizations/#{org}/pipelines/#{pipeline}", options)
+        get("#{pipelines_path(org)}/#{route_segment(pipeline, :pipeline)}", options)
       end
 
       # Create a pipeline
@@ -48,7 +50,7 @@ module Buildkit
       #   })
       #
       def create_pipeline(org, options = {})
-        post("/v2/organizations/#{org}/pipelines", options)
+        post(pipelines_path(org), options)
       end
 
       # Update a pipeline
@@ -63,7 +65,7 @@ module Buildkit
       #   })
       #
       def update_pipeline(org, pipeline, options = {})
-        patch("/v2/organizations/#{org}/pipelines/#{pipeline}", options)
+        patch("#{pipelines_path(org)}/#{route_segment(pipeline, :pipeline)}", options)
       end
 
       # Archive a pipeline
@@ -76,7 +78,7 @@ module Buildkit
       #   Buildkit.archive_pipeline('my-great-org', 'great-pipeline')
       #
       def archive_pipeline(org, pipeline)
-        post("/v2/organizations/#{org}/pipelines/#{pipeline}/archive")
+        post("#{pipelines_path(org)}/#{route_segment(pipeline, :pipeline)}/archive")
       end
 
       # Unarchive a pipeline
@@ -89,7 +91,7 @@ module Buildkit
       #   Buildkit.unarchive_pipeline('my-great-org', 'great-pipeline')
       #
       def unarchive_pipeline(org, pipeline)
-        post("/v2/organizations/#{org}/pipelines/#{pipeline}/unarchive")
+        post("#{pipelines_path(org)}/#{route_segment(pipeline, :pipeline)}/unarchive")
       end
 
       # Delete a pipeline
@@ -101,7 +103,13 @@ module Buildkit
       #   Buildkit.delete_pipeline('my-great-org', 'great-pipeline')
       #
       def delete_pipeline(org, pipeline)
-        delete("/v2/organizations/#{org}/pipelines/#{pipeline}")
+        delete("#{pipelines_path(org)}/#{route_segment(pipeline, :pipeline)}")
+      end
+
+      private
+
+      def pipelines_path(org)
+        "/v2/organizations/#{route_segment(org, :org)}/pipelines"
       end
     end
   end
