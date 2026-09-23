@@ -4,6 +4,8 @@ module Buildkit
   class Client
     # Methods for the Organizations API
     #
+    # Identifier arguments must be single URL path segments; see {Buildkit::InvalidRouteSegment}.
+    #
     # @see https://buildkite.com/docs/api/organizations
     module Organizations
       # List organizations
@@ -24,7 +26,7 @@ module Buildkit
       # @example
       #   Buildkit.organization('my-great-org')
       def organization(org, options = {})
-        get("/v2/organizations/#{org}", options)
+        get("/v2/organizations/#{route_segment(org, :org)}", options)
       end
     end
   end

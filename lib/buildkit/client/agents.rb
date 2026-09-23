@@ -4,6 +4,8 @@ module Buildkit
   class Client
     # Methods for the Agents API
     #
+    # Identifier arguments must be single URL path segments; see {Buildkit::InvalidRouteSegment}.
+    #
     # @see https://buildkite.com/docs/api/agents
     module Agents
       # List agents
@@ -13,7 +15,7 @@ module Buildkit
       # @example
       #   Buildkit.agents('my-great-org')
       def agents(org, options = {})
-        get("/v2/organizations/#{org}/agents", options)
+        get("/v2/organizations/#{route_segment(org, :org)}/agents", options)
       end
 
       # Get an agent
@@ -25,7 +27,7 @@ module Buildkit
       # @example
       #   Buildkit.agent('my-great-org', '0b461f65-e7be-4c80-888a-ef11d81fd971')
       def agent(org, id, options = {})
-        get("/v2/organizations/#{org}/agents/#{id}", options)
+        get("/v2/organizations/#{route_segment(org, :org)}/agents/#{route_segment(id, :id)}", options)
       end
 
       # Stop an agent
@@ -36,7 +38,7 @@ module Buildkit
       # @example Stop an  agent
       #   Buildkit.stop_agent('my-great-org', '16940c91-f12d-4122-8154-0edf6c0978c2')
       def stop_agent(org, id, options = {})
-        put("/v2/organizations/#{org}/agents/#{id}/stop", options)
+        put("/v2/organizations/#{route_segment(org, :org)}/agents/#{route_segment(id, :id)}/stop", options)
       end
     end
   end

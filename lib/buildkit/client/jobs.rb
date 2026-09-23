@@ -4,6 +4,8 @@ module Buildkit
   class Client
     # Methods for the Jobs API
     #
+    # Identifier arguments must be single URL path segments; see {Buildkit::InvalidRouteSegment}.
+    #
     # @see https://buildkite.com/docs/rest-api/jobs
     module Jobs
       # Retry a job
@@ -17,7 +19,7 @@ module Buildkit
       # @example
       #   Buildkit.retry_job('my-great-org', 'great-pipeline', 123, 'my-job-id')
       def retry_job(org, pipeline, build, job, options = {})
-        put("/v2/organizations/#{org}/pipelines/#{pipeline}/builds/#{build}/jobs/#{job}/retry", options)
+        put("#{job_path(org, pipeline, build, job)}/retry", options)
       end
 
       # Get a job's environment variables
@@ -31,7 +33,7 @@ module Buildkit
       # @example
       #   Buildkit.job_env('my-great-org', 'great-pipeline', 123, 'my-job-id')
       def job_env(org, pipeline, build, job, options = {})
-        get("/v2/organizations/#{org}/pipelines/#{pipeline}/builds/#{build}/jobs/#{job}/env", options)
+        get("#{job_path(org, pipeline, build, job)}/env", options)
       end
 
       # Get a job's log output
@@ -45,7 +47,7 @@ module Buildkit
       # @example
       #   Buildkit.job_log('my-great-org', 'great-pipeline', 123, 'my-job-id')
       def job_log(org, pipeline, build, job, options = {})
-        get("/v2/organizations/#{org}/pipelines/#{pipeline}/builds/#{build}/jobs/#{job}/log", options)
+        get("#{job_path(org, pipeline, build, job)}/log", options)
       end
 
       # Unblock a job
@@ -65,7 +67,14 @@ module Buildkit
       #     }
       #   })
       def unblock(org, pipeline, build, job, options = {})
-        put("/v2/organizations/#{org}/pipelines/#{pipeline}/builds/#{build}/jobs/#{job}/unblock", options)
+        put("#{job_path(org, pipeline, build, job)}/unblock", options)
+      end
+
+      private
+
+      def job_path(org, pipeline, build, job)
+        "/v2/organizations/#{route_segment(org, :org)}/pipelines/#{route_segment(pipeline, :pipeline)}" \
+          "/builds/#{route_segment(build, :build)}/jobs/#{route_segment(job, :job)}"
       end
     end
   end
