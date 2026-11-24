@@ -1,5 +1,9 @@
 # Buildkit
 
+> [!WARNING]
+> This repository is no longer maintained. It has been archived and receives no updates or
+> security fixes. Released versions of the `buildkit` gem stay available on RubyGems.
+
 Ruby toolkit for the Buildkite API.
 
 [![Gem Version](https://badge.fury.io/rb/buildkit.png)](http://badge.fury.io/rb/buildkit)
