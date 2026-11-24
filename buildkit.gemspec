@@ -10,7 +10,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Jean Boussier']
   spec.email         = ['jean.boussier@shopify.com']
 
-  spec.summary       = 'Ruby toolkit for working with the Buildkite API'
+  spec.summary       = '[Deprecated] Ruby toolkit for working with the Buildkite API'
+  spec.description   = 'No longer maintained: the repository is archived and receives no updates or security fixes.'
   spec.homepage      = 'https://github.com/shopify/buildkit'
   spec.license       = 'MIT'
 
@@ -20,6 +21,11 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.metadata['allowed_push_host'] = 'https://rubygems.org'
+
+  spec.post_install_message = <<~MESSAGE
+    buildkit is no longer maintained. Its repository is archived and it receives no
+    updates or security fixes. See https://github.com/Shopify/buildkit
+  MESSAGE
 
   spec.required_ruby_version = '>= 2.5'
 
